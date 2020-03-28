@@ -52,6 +52,18 @@ on init
     chown system system /sys/class/leds/white/brightness
     chown system system /sys/class/leds/white/breath
 
+    # Boot time fs tuning
+    write /sys/block/sda/queue/iostats 0
+    write /sys/block/sda/queue/scheduler cfq
+    write /sys/block/sda/queue/iosched/slice_idle 0
+    write /sys/block/sda/queue/read_ahead_kb 2048
+    write /sys/block/sda/queue/nr_requests 256
+    write /sys/block/sde/queue/iostats 0
+    write /sys/block/sde/queue/scheduler cfq
+    write /sys/block/sde/queue/iosched/slice_idle 0
+    write /sys/block/sde/queue/read_ahead_kb 2048
+    write /sys/block/sde/queue/nr_requests 256
+
     # Add a cpuset for the camera daemon
     # We want all cores for camera
     mkdir /dev/cpuset/camera-daemon
@@ -141,6 +153,8 @@ on boot
     chown system system /sys/class/drm/card0-DSI-1/doze_backlight
     start rmt_storage
     start rfs_access
+
+    # First setup runtime cpusets only for silver cpus
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/audio-app/cpus 1-2
     write /dev/cpuset/foreground/cpus 0-3
@@ -179,6 +193,15 @@ on boot
 on boot && property:persist.vendor.usb.controller.default=*
     setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
 
+    # Runtime fs tuning
+    write /sys/block/sda/queue/read_ahead_kb 128
+    write /sys/block/sda/queue/nr_requests 128
+    write /sys/block/sda/queue/iostats 1
+    write /sys/block/sde/queue/read_ahead_kb 128
+    write /sys/block/sde/queue/nr_requests 128
+    write /sys/block/sde/queue/iostats 1
+
+#pd-mapper
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
     user system
