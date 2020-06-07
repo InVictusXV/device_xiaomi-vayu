@@ -516,6 +516,8 @@ on property:vendor.media.target_variant=*
 on property:vold.decrypt=trigger_restart_framework
     start wcnss-service
 
+    start affinity
+
 service vendor.qrtr-ns /vendor/bin/qrtr-ns -f
     class core
     user vendor_qrtr
@@ -602,6 +604,13 @@ service cnss-daemon /system/vendor/bin/cnss-daemon -n -l
     user system
     group system inet net_admin wifi
     capabilities NET_ADMIN
+
+service affinity /vendor/etc/init.affinity.sh
+    class late_start
+    user root
+    group root system wakelock graphics
+    disabled
+    oneshot
 
 on property:sys.shutdown.requested=*
     write /sys/kernel/shutdown_wlan/shutdown 1
