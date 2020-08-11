@@ -61,9 +61,8 @@ vendor/lib64/camera/fdconfigpreview.bin|f3dfb2db6955221919245f382dd6132d9b28c7ad
 vendor/lib64/camera/fdconfigpreviewlite.bin|f3dfb2db6955221919245f382dd6132d9b28c7ad
 vendor/lib64/camera/fdconfigvideo.bin|f3dfb2db6955221919245f382dd6132d9b28c7ad
 vendor/lib64/camera/fdconfigvideolite.bin|f3dfb2db6955221919245f382dd6132d9b28c7ad
-vendor/lib64/hw/camera.qcom.so|1213922bc9bcf4ab3ea1fdc8df5277b1c7b69e9a
+vendor/lib64/hw/camera.qcom.so|114fa4e46c7d8a152062796698dc7329423997aa
 vendor/lib64/hw/com.qti.chi.override.so|c549e023e1ea18f52bf7bd089bd6009452ffbc4e
-vendor/lib64/hw/camera.qcom.so|1213922bc9bcf4ab3ea1fdc8df5277b1c7b69e9a
 vendor/lib64/hw/com.qti.chi.override.so|c549e023e1ea18f52bf7bd089bd6009452ffbc4e
 vendor/lib64/lib_sr_models.so|38ce1c97e41860b4c6c068af863fc6f565b9c088
 vendor/lib64/libalAILDC.so|cd3436990cf35dfa6592074a413b3b9fd0660ca6
@@ -83,8 +82,6 @@ vendor/lib64/libdualcam_video_optical_zoom.so|646a9075456fef857208520ad007b61fa2
 vendor/lib64/libFaceGrade.so|b3f316c56ab78ec550e8248c8d3ae7ca720d009e
 vendor/lib64/libft2vendor.so|fd87e8dbbb193d263d60bd352813b686633cba65
 vendor/lib64/libHalSuperSensorServer.so|faa4d602f226da8d92b197f49ffe29f0ad506426
-vendor/lib64/libmegface.so|e32055dc224076c8a7e8486292341c4604a12787
-vendor/lib64/libMegviiFacepp-0.5.2.so|4dce8e04d919df9434d2444c7687328018a6e34f
 vendor/lib64/libmi_supernight_raw_checker.so|4b2e27a2731f6db7cb5498230f8671a2a0a3a050
 vendor/lib64/libmi_supernight_raw.so|59ef418d508bbf08b99286e3df10a03ba2a739a8
 vendor/lib64/libmialgoengine.so|cf19297975ab6a388250cdd0d5a85ec8f918e7cd
@@ -235,7 +232,6 @@ vendor/etc/camera/LDC_PACKDATA_VENDORID_0x01.bin|ce23add483fde171c75d17a83c5ba7f
 vendor/etc/camera/LDC_PACKDATA_VENDORID_0x03.bin|2c1d878221fdef87ae57ea2b432815f75fb089d1
 vendor/etc/camera/LDC_PACKDATA_VENDORID_0x07.bin|315f9774085f123455b0065c26331a91c80bb1cc
 vendor/etc/camera/LDC_table_src1.dat|3ddd32f590504da34cda3ee1f4a9f6c8a5266525
-vendor/etc/camera/megviifacepp_0_5_2_model|1f0cdc706d3853114ecf7a2c0c7436238fcdf258
 vendor/etc/camera/model_back.dlc|823332124cc163bced8b02afbe8cf0e4e5f05da8
 vendor/etc/camera/model_front.dlc|3611a0bf4af5ebbfd32963b11786fc35a64d247c
 vendor/etc/camera/morpho_lowlight4.0.xml|af4c42e7b05371ab96a6773db955819481fa78b6
