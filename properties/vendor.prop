@@ -178,6 +178,9 @@ persist.vendor.ims.disableQXDMLogs=1
 # PASR
 vendor.power.pasr.enabled=false
 
+# Perf
+ro.vendor.extension_library=libqti-perfd-client.so
+
 # Radio/RIL
 persist.radio.dynamic_sar=false
 persist.radio.multisim.config=dsds
