@@ -1,6 +1,9 @@
 # DSP
 genfscon sysfs /kernel/boot_cdsp/boot                                           u:object_r:sysfs_msm_boot:s0
 
+# EAS
+genfscon proc /sys/kernel/sched_energy_aware                                    u:object_r:proc_sched_energy_aware:s0
+
 # Display
 genfscon sysfs /devices/platform/soc/2c00000.qcom,kgsl-3d0                                          u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /devices/platform/soc/ae00000.qcom,mdss_mdp/idle_state                               u:object_r:vendor_sysfs_graphics:s0
