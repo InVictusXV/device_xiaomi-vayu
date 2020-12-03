@@ -181,6 +181,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libshim_megvii
 
+# Configstore
+PRODUCT_PACKAGES += \
+    disable_configstore
+
 # Consumer IR
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
