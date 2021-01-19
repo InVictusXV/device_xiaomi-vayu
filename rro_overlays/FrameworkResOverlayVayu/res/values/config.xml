@@ -17,9 +17,6 @@
  */
 -->
 
-<!-- These resources are around just to allow their values to be customized
-     for different hardware and product builds.  Do not translate. -->
-
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Flag indicating whether the we should enable the automatic brightness in Settings.
@@ -353,7 +350,7 @@
         <item>"/apex/com.android.art/javalib/core-libart.jar"</item>
         <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
         <item>"/system_ext/priv-app/SystemUI/SystemUI.apk"</item>
-        <item>"/system/lib64/libsurfaceflinger.so"</item>
+        <item>"/system/bin/libsurfaceflinger.so"</item>
         <item>"/system/lib64/libRScpp.so"</item>
         <item>"/system/lib64/libRS.so"</item>
         <item>"/system/lib64/libRS_internal.so"</item>
