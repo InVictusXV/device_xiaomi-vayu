@@ -253,6 +253,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     GoogleCameraGoVayu
 
+# HentaiOS Stuff
+PRODUCT_PACKAGES += \
+    HentaiWallpaperDark \
+    SystemUIGoogleOverlayHentai
+
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
