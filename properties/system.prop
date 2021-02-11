@@ -31,6 +31,9 @@ persist.vendor.dpm.feature=1
 # Fwk detect
 ro.vendor.qti.va_aosp.support=1
 
+# FUSE
+persist.sys.fuse.passthrough.enable=true
+
 # GBoard
 ro.com.google.ime.kb_pad_port_b=1
 
