@@ -615,6 +615,9 @@
     <!-- Flashlight on power button -->
     <integer name="config_flashlightProximityTimeout">3000</integer>
 
+    <!-- Whether device has fingerprint on power button -->
+    <bool name="config_powerButtonFingerprint">true</bool>
+
     <!-- List supported color modes. -->
     <integer-array name="config_availableColorModes">
         <item>0</item> <!-- COLOR_MODE_NATURAL -->
