@@ -1,2 +1,6 @@
 # Allow devicesettings_app to lookup vendor_sysfs_graphics
 allow devicesettings_app vendor_sysfs_graphics:dir search;
+
+# Allow devicesettings_app to lookup kcal_dev
+allow devicesettings_app kcal_dev:dir search;
+allow devicesettings_app kcal_dev:file rw_file_perms;
