@@ -24,6 +24,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
 #GApps
 WITH_GMS := true
 
+# b/189477034: Bypass build time check on uses_libs until vendor fixes all their apps
+PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
+RELAX_USES_LIBRARY_CHECK := true
+
 TARGET_BOOT_ANIMATION_RES := 1080
 
 PRODUCT_NAME := aosp_vayu
