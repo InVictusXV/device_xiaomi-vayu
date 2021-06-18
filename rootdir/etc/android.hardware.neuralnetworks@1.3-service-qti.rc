@@ -2,7 +2,7 @@ service neuralnetworks_hal_service /vendor/bin/hw/android.hardware.neuralnetwork
     class hal
     user system
     group system
-    writepid /dev/stune/nnapi-hal/tasks
+    task_profiles NNApiHALPerformance
 
 on post-fs-data
     mkdir /data/vendor/nnhal 0700 system system
