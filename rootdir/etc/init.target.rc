@@ -346,3 +346,7 @@ on post-fs-data
     chmod 0777 /sys/module/migt/parameters/fas_power_mod
     restorecon /sys/module/migt/parameters/fas_power_mod
 
+on post-fs-data
+    # Allow system to read measured_fps
+    chown system graphics /sys/class/drm/sde-crtc-0/measured_fps
+    chmod 0444 /sys/class/drm/sde-crtc-0/measured_fps
