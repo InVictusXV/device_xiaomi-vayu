@@ -164,7 +164,8 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
 PRODUCT_PACKAGES += \
-    Snap
+    Snap \
+    GoogleCameraGo
 
 PRODUCT_PACKAGES += \
     libshim_megvii
