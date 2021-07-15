@@ -10,7 +10,8 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-lineage \
+    $(LOCAL_PATH)/overlay-vayu
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -19,6 +20,16 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Include GSI keys
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_WIDTH := 1080
+
+PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -203,6 +214,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     vendor.xiaomi.hardware.fingerprintextension@1.0.vendor
+
+PRODUCT_PACKAGES += \
+    libkeymaster_messages.vendor
 
 # FM
 PRODUCT_PACKAGES += \
@@ -416,4 +430,4 @@ PRODUCT_BOOT_JARS += \
     WfdCommon
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/xiaomi/sm8150-common/sm8150-common-vendor.mk)
+$(call inherit-product, vendor/xiaomi/vayu/vayu-vendor.mk)
