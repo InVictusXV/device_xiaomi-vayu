@@ -14,6 +14,8 @@ $(call inherit-product, vendor/nusantara/config/common_full_phone.mk)
 # Inherit from vayu device
 $(call inherit-product, device/xiaomi/vayu/device.mk)
 
+TARGET_BOOT_ANIMATION_RES := 1080
+
 PRODUCT_NAME := nad_vayu
 PRODUCT_DEVICE := vayu
 PRODUCT_MANUFACTURER := Xiaomi
