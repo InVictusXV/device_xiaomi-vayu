@@ -427,6 +427,14 @@ vendor/etc/sensors/proto/sns_wrist_tilt_gesture.proto
 vendor/etc/sensors/sns_reg_config
 vendor/etc/elliptic_sensor.xml
 
+# Touch Feature
+vendor/lib/vendor.xiaomi.hardware.touchfeature@1.0.so
+vendor/lib64/vendor.xiaomi.hardware.touchfeature@1.0.so
+vendor/bin/hw/vendor.xiaomi.hardware.touchfeature@1.0-service
+vendor/lib/hw/vendor.xiaomi.hardware.touchfeature@1.0-impl.so
+vendor/lib64/hw/vendor.xiaomi.hardware.touchfeature@1.0-impl.so
+vendor/etc/init/vendor.xiaomi.hardware.touchfeature@1.0-service.rc
+
 # Thermal engine
 vendor/etc/thermal-arvr.conf
 vendor/etc/thermal-camera.conf
