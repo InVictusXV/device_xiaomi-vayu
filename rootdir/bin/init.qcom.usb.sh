@@ -28,16 +28,9 @@
 #
 #
 
-# Set platform variables
-soc_hwplatform=`cat /sys/devices/soc0/hw_platform 2> /dev/null`
-soc_machine=`cat /sys/devices/soc0/machine 2> /dev/null`
-soc_machine=${soc_machine:0:2}
-soc_id=`cat /sys/devices/soc0/soc_id 2> /dev/null`
-
 #
 # Allow USB enumeration with default PID/VID
 #
-baseband=`getprop ro.baseband`
 debuggable=`getprop ro.debuggable`
 buildvariant=`getprop ro.build.type`
 
@@ -48,122 +41,25 @@ buildvariant=`getprop ro.build.type`
 #
 esoc_name=`cat /sys/bus/esoc/devices/esoc0/esoc_name 2> /dev/null`
 
-target=`getprop ro.board.platform`
-
 #
 # Override USB default composition
 #
 # If USB persist config not set, set default configuration
 if [ "$(getprop persist.vendor.usb.config)" == "" -a "$(getprop ro.build.type)" != "user" -a \
 	"$(getprop init.svc.vendor.usb-gadget-hal-1-0)" != "running" ]; then
-	if [ "$esoc_name" == "" ]; then
-	#setprop persist.vendor.usb.config adb
-		case "$soc_hwplatform" in
-			"ALIOTH")
-				if [ "$(getprop ro.boot.factorybuild)" == "1" ]; then
-					setprop persist.vendor.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb
-				elif [ "$buildvariant" = "eng" ]; then
-					setprop persist.vendor.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb
-				else
-					if [ -z "$debuggable" -o "$debuggable" = "1"  ]; then
-						setprop persist.vendor.usb.config adb
-					else
-						setprop persist.vendor.usb.config none
-					fi
-				fi
-			;;
-			"COURBET" | "SWEET" | "VAYU")
-				if [ "$(getprop ro.boot.factorybuild)" == "1" ]; then
-					setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,qdss,adb
-				elif [ "$buildvariant" = "eng" ]; then
-					setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,qdss,adb
-				else
-					if [ -z "$debuggable" -o "$debuggable" = "1"  ]; then
-						setprop persist.vendor.usb.config adb
-					else
-						setprop persist.vendor.usb.config none
-					fi
-				fi
-			;;
-		esac
-
+	if [ -z "$debuggable" -o "$debuggable" = "1" ]; then
+		setprop persist.vendor.usb.config adb
 	else
-		case "$(getprop ro.baseband)" in
-			"apq")
-				setprop persist.vendor.usb.config diag,adb
-			;;
-		*)
-		case "$soc_hwplatform" in
-			"Dragon" | "SBC")
-				setprop persist.vendor.usb.config diag,adb
-			;;
-			"CMI" | "UMI" | "PICASSO" | "MONET" | "VANGOGH" | "LMI" | "COURBET" | "SWEET" | "ALIOTH" | "THYME" | "VAYU" | "ENUMA")
-				if [ "$(getprop ro.boot.factorybuild)" == "1" ]; then
-					setprop persist.vendor.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb
-				elif [ "$buildvariant" = "eng" ]; then
-					setprop persist.vendor.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb
-				else
-					if [ -z "$debuggable" -o "$debuggable" = "1"  ]; then
-						setprop persist.vendor.usb.config adb
-					else
-						setprop persist.vendor.usb.config none
-					fi
-				fi
-			;;
-		*)
-		  case "$soc_machine" in
-		    "SA")
-	              setprop persist.vendor.usb.config diag,adb
-		    ;;
-		    *)
-	            case "$target" in
-	              "msm8996")
-	                  setprop persist.vendor.usb.config diag,serial_cdev,serial_tty,rmnet_ipa,mass_storage,adb
-		      ;;
-	              "msm8909")
-		          setprop persist.vendor.usb.config diag,serial_smd,rmnet_qti_bam,adb
-		      ;;
-	              "msm8937")
-			    if [ -d /config/usb_gadget ]; then
-				       setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,adb
-			    else
-			               case "$soc_id" in
-				               "313" | "320")
-				                  setprop persist.vendor.usb.config diag,serial_smd,rmnet_ipa,adb
-				               ;;
-				               *)
-				                  setprop persist.vendor.usb.config diag,serial_smd,rmnet_qti_bam,adb
-				               ;;
-			               esac
-			    fi
-		      ;;
-	              "msm8953")
-			      if [ -d /config/usb_gadget ]; then
-				      setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,adb
-			      else
-				      setprop persist.vendor.usb.config diag,serial_smd,rmnet_ipa,adb
-			      fi
-		      ;;
-	              "msm8998" | "sdm660" | "apq8098_latv")
-		          setprop persist.vendor.usb.config diag,serial_cdev,rmnet,adb
-		      ;;
-	              "sdm845" | "sdm710")
-		          setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,adb
-		      ;;
-	              "msmnile" | "sm6150" | "trinket" | "lito" | "atoll" | "bengal" | "lahaina" | "holi")
-			  setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,qdss,adb
-		      ;;
-	              *)
-		          setprop persist.vendor.usb.config diag,adb
-		      ;;
-                    esac
-		    ;;
-		  esac
-	          ;;
-	      esac
-	      ;;
-	  esac
-      fi
+		setprop persist.vendor.usb.config none
+	fi
+
+	if [ "$buildvariant" = "eng" ]; then
+		if [ "$esoc_name" == "" ]; then
+			setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,qdss,adb
+		else
+			setprop persist.vendor.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb
+		fi
+	fi
 fi
 
 # This check is needed for GKI 1.0 targets where QDSS is not available
@@ -171,20 +67,6 @@ if [ "$(getprop persist.vendor.usb.config)" == "diag,serial_cdev,rmnet,dpl,qdss,
      ! -d /config/usb_gadget/g1/functions/qdss.qdss ]; then
       setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,adb
 fi
-
-# Start peripheral mode on primary USB controllers for Automotive platforms
-case "$soc_machine" in
-    "SA")
-	if [ -f /sys/bus/platform/devices/a600000.ssusb/mode ]; then
-	    default_mode=`cat /sys/bus/platform/devices/a600000.ssusb/mode`
-	    case "$default_mode" in
-		"none")
-		    echo peripheral > /sys/bus/platform/devices/a600000.ssusb/mode
-		;;
-	    esac
-	fi
-    ;;
-esac
 
 # check configfs is mounted or not
 if [ -d /config/usb_gadget ]; then
@@ -224,14 +106,6 @@ diag_extra=`getprop persist.vendor.usb.config.extra`
 if [ "$diag_extra" == "" ]; then
 	setprop persist.vendor.usb.config.extra none
 fi
-
-# enable rps cpus on msm8937 target
-setprop vendor.usb.rps_mask 0
-case "$soc_id" in
-	"294" | "295" | "353" | "354")
-		setprop vendor.usb.rps_mask 40
-	;;
-esac
 
 #
 # Initialize UVC conifguration.

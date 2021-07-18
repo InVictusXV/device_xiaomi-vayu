@@ -42,21 +42,9 @@ on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
     wait /dev/block/platform/soc/1d84000.ufshc
     symlink /dev/block/platform/soc/1d84000.ufshc /dev/block/bootdevice
-    #change owner of white led
+    # change owner of white led
     chown system system /sys/class/leds/white/brightness
     chown system system /sys/class/leds/white/breath
-    #change owner of green led
-    chown system system /sys/class/leds/green/brightness
-    chown system system /sys/class/leds/green/breath
-
-# Add a cpuset for the camera daemon
-# We want all cores for camera
-    mkdir /dev/cpuset/camera-daemon
-    write /dev/cpuset/camera-daemon/cpus 0-7
-    write /dev/cpuset/camera-daemon/mems 0
-    chown cameraserver cameraserver /dev/cpuset/camera-daemon
-    chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
-    chmod 0660 /dev/cpuset/camera-daemon/tasks
 
 on early-fs
     start vold
@@ -69,22 +57,15 @@ on fs
     restorecon_recursive /mnt/vendor/persist
     mkdir /mnt/vendor/persist/data 0700 system system
     mkdir /mnt/vendor/persist/audio 0755 system system
-    chmod 644 /mnt/vendor/persist/audio/us_manual_cal
     #+ add for watermark
     mkdir /mnt/vendor/persist/camera 0777 root root
     mkdir /dev/logfs 0771 system system
     mount vfat /dev/block/bootdevice/by-name/logfs /dev/logfs noatime umask=006,uid=1000,gid=1000
-    chown system system /dev/tiload_node
-    chmod 660 /dev/tiload_node
-
     mkdir /mnt/vendor/persist/subsys 0770 root system
 
 on post-fs
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-
-    start vendor.spdaemon
-    start vendor.sec_nvm
 
 on late-fs
     wait_for_prop hwservicemanager.ready true
@@ -99,26 +80,11 @@ on post-fs-data
     mkdir /tombstones/dsps 0771 system system
     mkdir /data/vendor/hbtp 0750 system system
     mkdir /data/vendor/nnhal 0700 system system
-    chmod 0644 /dev/elliptic0
-    chmod 0644 /dev/elliptic1
     mkdir /data/vendor/misc/display 0771 system system
     mkdir /data/vendor/nfc 0770 nfc nfc
-    chmod 666 /sys/class/drm/card0-DSI-1/disp_count
-    chown system system /sys/class/drm/card0-DSI-1/dim_alpha
-    chown system system /sys/class/drm/card0-DSI-1/fod_ui_ready
-    chown system system /sys/class/drm/card0-DSI-1/dim_layer_enable
 
     mkdir /data/vendor/thermal 0771 root system
     mkdir /data/vendor/thermal/config 0771 root system
-
-    chown system system /dev/tfa_reg
-    chown system system /dev/tfa_rw
-    chown system system /dev/tfa_rpc
-    chown system system /dev/tfa_control
-    chmod 0660 /dev/tfa_reg
-    chmod 0660 /dev/tfa_rw
-    chmod 0660 /dev/tfa_rpc
-    chmod 0660 /dev/tfa_control
 
 on property:ro.boot.dp=0x0
     write /sys/bus/platform/devices/c440000.qcom,spmi:qcom,pm8150@0:qcom,power-on@800/pshold_reboot 7
@@ -126,14 +92,15 @@ on property:ro.boot.dp=0x0
 on early-boot
     start vendor.sensors
 
-# For cpusets initialize for Silver Only first and then Silver + Gold
-# Silver Only configuration cannot work with 0-7
 on boot
     chown system system /sys/kernel/hbtp/display_pwr
     chown system system /sys/kernel/qvr_external_sensor/fd
-    chown system system /sys/class/drm/card0-DSI-1/doze_backlight
+
     start rmt_storage
     start rfs_access
+
+    # For cpusets initialize for Silver Only first and then Silver + Gold
+    # Silver Only configuration cannot work with 0-7
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/audio-app/cpus 1-2
     write /dev/cpuset/foreground/cpus 0-3
@@ -149,14 +116,10 @@ on boot
     # Touchpanel
     chown system system /sys/touchpanel/double_tap
 
+    # Thermal
     chown system system /sys/class/thermal/thermal_message/sconfig
 
-
-    chown system system /proc/tp_selftest
-    chown system system /sys/class/touch/touch_dev/palm_sensor
-
-# Add a cpuset for the camera daemon
-# We want all cores for camera
+    # Add a cpuset for the camera daemon
     mkdir /dev/cpuset/camera-daemon
     write /dev/cpuset/camera-daemon/cpus 0-7
     write /dev/cpuset/camera-daemon/mems 0
@@ -164,13 +127,13 @@ on boot
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
 
-#palm_sensor
+    # palm_sensor
     chown system system /sys/class/touch/touch_dev/palm_sensor
-
-    chown system system /sys/class/backlight/panel0-backlight/brightness_clone
+    chown system system /sys/class/touch/touch_dev/palm_sensor
     chown system system /dev/lirc0
     chmod 0660 /dev/lirc0
-#USB controller configuration
+
+    # USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
     setprop vendor.usb.rmnet.func.name "gsi"
     setprop vendor.usb.rmnet.inst.name "rmnet"
@@ -180,10 +143,10 @@ on boot
     setprop sys.usb.configfs 1
 
 on property:vendor.display.lcd_density=560
-   setprop dalvik.vm.heapgrowthlimit 256m
+    setprop dalvik.vm.heapgrowthlimit 256m
 
 on property:vendor.display.lcd_density=640
-   setprop dalvik.vm.heapgrowthlimit 512m
+    setprop dalvik.vm.heapgrowthlimit 512m
 
 on boot && property:persist.vendor.usb.controller.default=*
     setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
@@ -191,13 +154,11 @@ on boot && property:persist.vendor.usb.controller.default=*
 on property:vendor.usb.controller=*
     setprop sys.usb.controller ${vendor.usb.controller}
 
-#pd-mapper
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
     user system
     group system
 
-#Peripheral manager
 service vendor.per_mgr /vendor/bin/pm-service
     class core
     user system
@@ -227,17 +188,6 @@ on charger
     chown system system /sys/class/leds/white/brightness
     write /sys/class/leds/white/brightness 255
 
-service vendor.spdaemon /vendor/bin/spdaemon
-    class core
-    user system
-    group system
-    shutdown critical
-
-service vendor.sec_nvm /vendor/bin/sec_nvm
-    class core
-    user system
-    group system
-
 service vendor.thermal-engine /vendor/bin/thermal-engine
    class main
    user root
@@ -252,11 +202,6 @@ service vendor.mdm_helper /vendor/bin/mdm_helper
     group system wakelock
     disabled
 
-service vendor.mdm_launcher /vendor/bin/sh /vendor/bin/init.mdm.sh
-    class main
-    oneshot
-
-
 on property:vold.decrypt=trigger_restart_framework
     start cnss_diag
 
@@ -264,17 +209,6 @@ service cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM
     class main
     user system
     group system wifi inet sdcard_rw media_rw diag
-    oneshot
-
-service vendor.energy-awareness /vendor/bin/energy-awareness
-    class main
-    user system
-    group system
-    oneshot
-
-service panel-info-sh /system/vendor/bin/sh /vendor/etc/init.panel_info.sh
-    class core
-    user root
     oneshot
 
 service nv_mac /vendor/bin/nv_mac
@@ -294,55 +228,15 @@ on property:vendor.dcvs.prop=1
    start dcvs-sh
 
 on property:vendor.audio.cit.spkcal.copy=true
-    copy /data/vendor/cit/tas2557_cal.bin /mnt/vendor/persist/audio/tas2557_cal.bin
-    copy /data/vendor/cit/tas2557_cal.txt /mnt/vendor/persist/audio/tas2557_cal.txt
-    copy /data/vendor/cit/tas2557_chk.txt /mnt/vendor/persist/audio/tas2557_chk.txt
-    chmod 666 /mnt/vendor/persist/audio/tas2557_cal.bin
-    chmod 666 /mnt/vendor/persist/audio/tas2557_cal.txt
-    chmod 666 /mnt/vendor/persist/audio/tas2557_chk.txt
-    copy /data/vendor/cit/cs35l41_cal.bin /mnt/vendor/persist/audio/cs35l41_cal.bin
-    copy /data/vendor/cit/cs35l41_cal.txt /mnt/vendor/persist/audio/cs35l41_cal.txt
-    chmod 666 /mnt/vendor/persist/audio/cs35l41_cal.bin
-    chmod 666 /mnt/vendor/persist/audio/cs35l41_cal.txt
-    copy /data/vendor/cit/tfa9894_chk.txt /mnt/vendor/persist/audio/tfa9894_chk.txt
-    chmod 666 /mnt/vendor/persist/audio/tfa9894_chk.txt
     copy /data/vendor/cit/tas25xx_calib.bin /mnt/vendor/persist/audio/tas25xx_calib.bin
     copy /data/vendor/cit/tas2559_cal.txt /mnt/vendor/persist/audio/tas2559_cal.txt
-    chmod 666 /mnt/vendor/persist/audio/tas25xx_calib.bin
-    chmod 666 /mnt/vendor/persist/audio/tas2559_cal.txt
-service remosaic_daemon /system/vendor/bin/remosaic_daemon
-   class late_start
-   user camera
-   group camera
-
-
-on post-fs-data
-    chmod 0666 /dev/migt
-    restorecon /dev/migt
-    chmod 0777 /sys/module/migt/parameters/migt_freq
-    restorecon /sys/module/migt/parameters/migt_freq
-    chmod 0777 /sys/module/migt/parameters/migt_ms
-    restorecon /sys/module/migt/parameters/migt_ms
-    chmod 0777 /sys/module/migt/parameters/migt_thresh
-    restorecon /sys/module/migt/parameters/migt_thresh
-    chmod 0777 /sys/module/migt/parameters/boost_policy
-    restorecon /sys/module/migt/parameters/boost_policy
-    chmod 0777 /sys/module/migt/parameters/fps_variance_ratio
-    restorecon /sys/module/migt/parameters/fps_variance_ratio
-    chmod 0777 /sys/module/migt/parameters/super_task_max_num
-    restorecon /sys/module/migt/parameters/super_task_max_num
-    chmod 0777 /sys/module/migt/parameters/migt_ceiling_freq
-    restorecon /sys/module/migt/parameters/migt_ceiling_freq
-    chmod 0777 /sys/module/migt/parameters/stask_candidate_num
-    restorecon /sys/module/migt/parameters/stask_candidate_num
-    chmod 0777 /sys/module/migt/parameters/fas_power_mod
-    restorecon /sys/module/migt/parameters/fas_power_mod
+    chmod 664 /mnt/vendor/persist/audio/tas25xx_calib.bin
+    chmod 664 /mnt/vendor/persist/audio/tas2559_cal.txt
 
 on post-fs-data
     # Allow system to read measured_fps
     chown system graphics /sys/class/drm/sde-crtc-0/measured_fps
     chmod 0444 /sys/class/drm/sde-crtc-0/measured_fps
-
 
     # Allow system to adjust haptic level directly
     chown system system /sys/module/qti_haptics/parameters/level
