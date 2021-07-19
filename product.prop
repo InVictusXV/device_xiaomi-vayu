@@ -1,3 +1,10 @@
 # Audio
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
+
+# App launch prefetching (IORap)
+iorapd.perfetto.enable=true
+iorapd.readahead.enable=true
+persist.device_config.runtime_native_boot.iorap_perfetto_enable=true
+persist.device_config.runtime_native_boot.iorap_readahead_enable=true
+ro.iorapd.enable=true
