@@ -68,7 +68,7 @@ persist.vendor.sensors.enable.mag_filter=true
 
 # WFD
 debug.sf.enable_hwc_vds=1
-debug.sf.latch_unsignaled=1
+debug.sf.latch_unsignaled=0
 persist.debug.wfd.enable=1
 persist.sys.wfd.virtual=0
 
