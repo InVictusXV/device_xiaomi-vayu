@@ -34,7 +34,6 @@ public class TouchSettingsFragment extends PreferenceFragment
     private SeekBarPreference mTouchSensitivity;
     private SeekBarPreference mTouchResponse;
     private SeekBarPreference mTouchResistant;
-    private SwitchPreference mGameMode;
 
     private String packageName = "";
 
@@ -54,7 +53,6 @@ public class TouchSettingsFragment extends PreferenceFragment
         actionBar.setTitle(appName);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        mGameMode = (SwitchPreference) findPreference(Constants.PREF_TOUCH_GAME_MODE);
         mTouchResistant = (SeekBarPreference) findPreference(Constants.PREF_TOUCH_RESISTANT);
         mTouchResponse = (SeekBarPreference) findPreference(Constants.PREF_TOUCH_RESPONSE);
         mTouchSensitivity = (SeekBarPreference) findPreference(Constants.PREF_TOUCH_SENSITIVITY);
@@ -84,10 +82,7 @@ public class TouchSettingsFragment extends PreferenceFragment
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPrefs, String key) {
-        if (Constants.PREF_TOUCH_GAME_MODE.equals(key)) {
-            updateTouchModes(sharedPrefs.getBoolean(key, false) ? 1 : 0,
-                    Constants.TOUCH_GAME_MODE);
-        } else if (Constants.PREF_TOUCH_RESPONSE.equals(key)) {
+        if (Constants.PREF_TOUCH_RESPONSE.equals(key)) {
             updateTouchModes(sharedPrefs.getInt(key, 0), Constants.TOUCH_RESPONSE);
         } else if (Constants.PREF_TOUCH_SENSITIVITY.equals(key)) {
             updateTouchModes(sharedPrefs.getInt(key, 0), Constants.TOUCH_SENSITIVITY);
@@ -98,7 +93,6 @@ public class TouchSettingsFragment extends PreferenceFragment
 
     private void updateDefaults() {
         String[] values = getTouchValues().split(",");
-        mGameMode.setChecked(Integer.parseInt(values[Constants.TOUCH_GAME_MODE]) == 1);
         mTouchResponse.setProgress(Integer.parseInt(values[Constants.TOUCH_RESPONSE]));
         mTouchSensitivity.setProgress(Integer.parseInt(values[Constants.TOUCH_SENSITIVITY]));
         mTouchResistant.setProgress(Integer.parseInt(values[Constants.TOUCH_RESISTANT]));
@@ -120,9 +114,6 @@ public class TouchSettingsFragment extends PreferenceFragment
     public void updateTouchModes(int value, int mode) {
         String[] values = getTouchValues().split(",");
         values[mode] = String.valueOf(value);
-        String finalValues = values[Constants.TOUCH_GAME_MODE] + "," + values[Constants.TOUCH_RESPONSE] + ","
-                + values[Constants.TOUCH_SENSITIVITY] + "," + values[Constants.TOUCH_RESISTANT];
-        writeTouchValues(finalValues);
+        writeTouchValues(String.join(",", values));
     }
 }
-

@@ -203,17 +203,15 @@ public final class ThermalUtils {
         }
 
         String[] value = values.split(",");
-        int gameMode = Integer.parseInt(value[Constants.TOUCH_GAME_MODE]);
         int touchResponse = Integer.parseInt(value[Constants.TOUCH_RESPONSE]);
         int touchSensitivity = Integer.parseInt(value[Constants.TOUCH_SENSITIVITY]);
         int touchResistant = Integer.parseInt(value[Constants.TOUCH_RESISTANT]);
-        int touchActiveMode = (touchResponse != 0 && touchSensitivity != 0 && touchResistant != 0)
-                ? 1 : 0;
+        int touchActiveMode = (touchResponse | touchSensitivity | touchResistant) > 0 ? 1 : 0;
         try {
             mTouchFeature.setTouchMode(Constants.MODE_TOUCH_TOLERANCE, touchSensitivity);
             mTouchFeature.setTouchMode(Constants.MODE_TOUCH_UP_THRESHOLD, touchResponse);
             mTouchFeature.setTouchMode(Constants.MODE_TOUCH_EDGE_FILTER, touchResistant);
-            mTouchFeature.setTouchMode(Constants.MODE_TOUCH_GAME_MODE, gameMode);
+            mTouchFeature.setTouchMode(Constants.MODE_TOUCH_GAME_MODE, touchActiveMode);
             mTouchFeature.setTouchMode(Constants.MODE_TOUCH_ACTIVE_MODE, touchActiveMode);
         } catch (RemoteException e) {
             // Do nothing

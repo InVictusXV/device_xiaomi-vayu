@@ -72,8 +72,6 @@
 
     <!-- Touch Control Settings -->
     <string name="touch_control_title">Сенсорне керування</string>
-    <string name="touch_game_mode_title">Увімкнути ігровий режим</string>
-    <string name="touch_game_mode_summary">Збільшує частоту дискретизації сенсора до 180Hz</string>
     <string name="touch_response_title">Відлік сенсора екрана</string>
     <string name="touch_response_summary">Керування сенсорним відліком</string>
     <string name="touch_sensitivity_title">Сенсорна чутливість</string>
