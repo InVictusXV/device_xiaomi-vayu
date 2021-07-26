@@ -259,6 +259,9 @@ vendor/lib64/libStDrvInt.so|9750d6defe78d06b92221f091f3dcf77c40ee596
 vendor/lib64/libtzdrmgenprov.so|70cbdce58abc9db3f8134817e88a20cd7be3fc49
 vendor/lib64/vendor.qti.hardware.qseecom@1.0.so|b466ec004b952d9c4778c62ec700a5bf299ac619
 
+# DRM - from LA.UM.9.1.r1-09600-SMxxx0.0
+vendor/lib/libpvr.so|012ff9ce89160aa4812972244cf5ccbe67fe9bf2
+
 # ESE - from vayu
 vendor/bin/hw/vendor.qti.esepowermanager@1.1-service|56d4f632717e883b125da2b36df8ab0a811d2cc1
 vendor/etc/init/vendor.qti.esepowermanager@1.1-service.rc|3c024c7135ec3dd8658624509ee61396a74f1ede
@@ -293,8 +296,13 @@ vendor/lib64/libOpenCL.so|0c5d889028ecb59ed9bb0c7522094dbebc468954
 vendor/lib64/libc2d30_bltlib.so|b7c7bbc41f317833927d9bf75fbf9b411dd63a96
 vendor/lib64/libllvm-qcom.so|9a351e8ccf9a1d271eab30601cbe7dc81aee11b0
 vendor/lib64/libpvr.so|0d293cfcac615cfadd41aeeba36a336869e51edc
+vendor/lib/libCB.so|870ab1cff34630dfe1869cffa1a338ec67151f7f
+vendor/lib/libllvm-qcom.so|ddf19482644e33fd87d457533be1013444b60882
 vendor/lib/libC2D2.so|91f015cad79024fdbb6a5603cce48693e58a4510
 vendor/lib/libc2d30_bltlib.so|71703a543760e40ba26cde07c2d41416cc9331ec
+
+# Graphics (Adreno) - from LA.UM.9.1.r1-09600-SMxxx0.0
+vendor/lib/libOpenCL.so|7e06bf784e1c4e1b89dbe811b038efcc7c1221a0
 
 # Graphics (Adreno - updatable) - from LA.UM.9.1.r1-10200-SMxxx0.0
 vendor/lib64/egl/eglSubDriverAndroid.so|d35fe73d8885859748302e091788754d56364206
