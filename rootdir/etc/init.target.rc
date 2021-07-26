@@ -118,6 +118,7 @@ on boot
 
     # Thermal
     chown system system /sys/class/thermal/thermal_message/sconfig
+    chmod 0644 /sys/class/thermal/thermal_message/sconfig
 
     # Add a cpuset for the camera daemon
     mkdir /dev/cpuset/camera-daemon
