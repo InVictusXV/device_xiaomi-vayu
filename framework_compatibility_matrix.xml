@@ -8,6 +8,23 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.wifi.hostapd</name>
+        <version>1.2</version>
+        <interface>
+            <name>IHostapdVendor</name>
+            <instance>default</instance>
+            <instance>wigighostapd</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.wifi.supplicant</name>
+        <version>2.2</version>
+        <interface>
+            <name>ISupplicantVendor</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>android.hardware.radio</name>
         <version>1.0-2</version>
         <interface>
