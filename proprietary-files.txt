@@ -241,6 +241,8 @@ vendor/etc/init/qseecomd.rc|9c3b9c649e2bb8959b14d0e1278a390ddb15dc5e
 vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc|0f43244d70d5efc1e4f089b926a9dc4f59e53db1
 vendor/etc/gpfspath_oem_config.xml|7aeade35b0bbe27530f6aca8c1ed5192a7acf59d
 vendor/lib64/hw/vendor.qti.hardware.qseecom@1.0-impl.so|82ab2c21730099498c7c63105b32cbe485aa9462
+vendor/lib/libpvr.so|a1f1896b9f50223a9285d3496b8f9bcfa98d004d
+vendor/lib64/libpvr.so|cbbe058bf1acb4d688086a33d59a8023d6a24799
 vendor/lib64/libcpion.so|4c718f3e8413f67b316aed0b8491a685681825af
 vendor/lib64/libdrmfs.so|622e74033bfe9f07d4686a936367b620fcdb3a7c
 vendor/lib64/libdrmtime.so|012ce75364db4108ca811f730cb2add4d2c32c45
