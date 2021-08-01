@@ -8,15 +8,20 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common DerpFest stuff.
-$(call inherit-product, vendor/derp/config/common_full_phone.mk)
+# Inherit some common P404 stuff.
+$(call inherit-product, vendor/404/configs/common.mk)
+
+# Bootanimation
+TARGET_BOOT_ANIMATION_RES := 1080
+
+# GApps
+$(call inherit-product, vendor/google/pixel/config.mk)
+$(call inherit-product, vendor/google/gms/config.mk)
 
 # Inherit from vayu device
 $(call inherit-product, device/xiaomi/vayu/device.mk)
 
-DERP_BUILDTYPE := CI
-
-PRODUCT_NAME := derp_vayu
+PRODUCT_NAME := p404_vayu
 PRODUCT_DEVICE := vayu
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := POCO
