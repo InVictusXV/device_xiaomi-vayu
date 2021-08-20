@@ -28,9 +28,6 @@
 #
 
 import /vendor/etc/init/hw/init.vayu.rc
-import /vendor/etc/init/init.mi_thermald.rc
-import /vendor/etc/init/init.batteryd.rc
-import /vendor/etc/init/init.batterysecret.rc
 
 on early-init
     write /proc/sys/kernel/sched_boost 1
