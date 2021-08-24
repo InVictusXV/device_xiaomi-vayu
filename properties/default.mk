@@ -35,7 +35,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     debug.sf.early_phase_offset_ns=500000 \
     debug.sf.high_fps_early_gl_phase_offset_ns=6500000 \
     debug.sf.high_fps_early_phase_offset_ns=6100000 \
-    debug.sf.high_fps_late_app_phase_offset_ns=1000000
+    debug.sf.high_fps_late_app_phase_offset_ns=1000000 \
+    debug.sf.phase_offset_threshold_for_next_vsync_ns=12100000
 
 ifneq ($(TARGET_BUILD_VARIANT),eng)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
