@@ -100,4 +100,4 @@ persist.sys.wfd.virtual=0
 
 # Blur
 ro.surface_flinger.supports_background_blur=0
-
+ro.launcher.blur.appLaunch=false
