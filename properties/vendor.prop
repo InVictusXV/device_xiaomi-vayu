@@ -119,7 +119,9 @@ vendor.display.disable_excl_rect=0
 vendor.display.disable_inline_rotator=1
 vendor.display.disable_scaler=0
 vendor.display.disable_ui_3d_tonemap=1
+vendor.display.disable_hw_recovery_dump=1
 vendor.display.enable_default_color_mode=0
+vendor.display.enable_force_split=1
 vendor.display.enable_null_display=0
 vendor.display.enable_optimize_refresh=1
 vendor.display.disable_metadata_dynamic_fps=1
@@ -181,9 +183,6 @@ persist.vendor.radio.rat_on=combine
 persist.vendor.radio.redir_party_num=1
 persist.vendor.radio.sar_sar_sensor=true
 ro.telephony.iwlan_operation_mode=legacy
-
-# SSR
-persist.vendor.ssr.restart_level=ALL_ENABLE
 
 # SoC
 ro.soc.manufacturer=Qualcomm
