@@ -21,6 +21,8 @@
 on property:sys.performance.level=-1
     chmod 644 /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 0
+    setprop vendor.powerhal.rendering ""
+    restart vendor.power-hal-aidl
 
 #
 # All presets from powersave to performance Mode
@@ -30,27 +32,41 @@ on property:sys.performance.level=-1
 on property:sys.performance.level=0
     chmod 644 /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 0
+    setprop vendor.powerhal.rendering ""
+    restart vendor.power-hal-aidl
 
 on property:sys.performance.level=1
     chmod 644 /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 14
+    setprop vendor.powerhal.rendering ""
+    restart vendor.power-hal-aidl
 
 on property:sys.performance.level=2
     chmod 644 /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 14
+    setprop vendor.powerhal.rendering ""
+    restart vendor.power-hal-aidl
 
 on property:sys.performance.level=3
     chmod 644 /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 10
+    setprop vendor.powerhal.rendering ""
+    restart vendor.power-hal-aidl
 
 on property:sys.performance.level=4
     chmod 644 /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 10
+    setprop vendor.powerhal.rendering ""
+    restart vendor.power-hal-aidl
 
 on property:sys.performance.level=5
     chmod 644 /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 9
+    setprop vendor.powerhal.rendering "EXPENSIVE_RENDERING"
+    restart vendor.power-hal-aidl
 
 on property:sys.performance.level=6
     chmod 644 /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 9
+    setprop vendor.powerhal.rendering "EXPENSIVE_RENDERING"
+    restart vendor.power-hal-aidl
