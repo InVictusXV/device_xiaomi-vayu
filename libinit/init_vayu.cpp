@@ -84,16 +84,8 @@ void load_dalvik_properties() {
     property_override("dalvik.vm.heapminfree", "8m");
 }
 
-void set_device_props(const std::string fingerprint, const std::string description,
-        const std::string brand, const std::string device, const std::string model,
+void set_device_props(const std::string brand, const std::string device, const std::string model,
         const std::string name, const std::string marketname) {
-    const auto set_ro_build_prop = [](const std::string &source,
-                                      const std::string &prop,
-                                      const std::string &value) {
-        auto prop_name = "ro." + source + "build." + prop;
-        property_override(prop_name.c_str(), value.c_str(), true);
-    };
-
     const auto set_ro_product_prop = [](const std::string &source,
                                         const std::string &prop,
                                         const std::string &value) {
@@ -102,38 +94,23 @@ void set_device_props(const std::string fingerprint, const std::string descripti
     };
 
     for (const auto &source : ro_props_default_source_order) {
-        set_ro_build_prop(source, "fingerprint", fingerprint);
         set_ro_product_prop(source, "brand", brand);
         set_ro_product_prop(source, "device", device);
         set_ro_product_prop(source, "model", model);
         set_ro_product_prop(source, "name", name);
         set_ro_product_prop(source, "marketname", marketname);
     }
-
-    property_override("ro.build.fingerprint", fingerprint.c_str());
-    property_override("ro.build.description", description.c_str());
-    property_override("ro.bootimage.build.fingerprint", fingerprint.c_str());
-    property_override("ro.system_ext.build.fingerprint", fingerprint.c_str());
-
 }
 
 void vendor_load_properties() {
-//  SafetyNet workaround
-    char const fp[] = "Xiaomi/vayu_global/vayu:11/RKQ1.200826.002/V12.5.7.0.RJUMIXM:user/release-keys";
-    char const fp_desc[] = "vayu_global-user 11 RKQ1.200826.002 V12.5.7.0.RJUMIXM release-keys";
-
     string region = android::base::GetProperty("ro.boot.hwc", "");
 
     if (region == "INDIA") {
         set_device_props(
-            fp,
-            fp_desc,
             "POCO", "bhima", "M2102J20SI", "bhima_global", "POCO X3 Pro");
         property_override("ro.product.mod_device", "bhima_global");
     } else {
         set_device_props(
-            fp,
-            fp_desc,
             "POCO", "vayu", "M2102J20SG", "vayu_global", "POCO X3 Pro");
         property_override("ro.product.mod_device", "vayu_global");
     }
