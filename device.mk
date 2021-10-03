@@ -369,7 +369,7 @@ PRODUCT_PACKAGES += \
    FrameworksResOverlayVayu \
    NotchBarKillerVayu \
    SettingsOverlayVayu \
-   SettingsProvidorOverlayVayu \
+   SettingsProviderOverlayVayu \
    SystemUIOverlayVayu \
    TelephonyOverlayVayu \
    TetheringConfigOverlayVayu \
