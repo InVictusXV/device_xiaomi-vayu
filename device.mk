@@ -364,7 +364,7 @@ PRODUCT_PACKAGES += \
    DialerOverlayVayu \
    FrameworksResOverlayVayu \
    SettingsOverlayVayu \
-   SettingsProvidorOverlayVayu \
+   SettingsProviderOverlayVayu \
    SystemUIOverlayVayu \
    TelephonyOverlayVayu \
    TetheringConfigOverlayVayu \
