@@ -15,6 +15,8 @@
      limitations under the License.
 -->
 <resources>
+    <!-- Ambient settings -->
+    <string name="ambient_enable">Use ambient display</string>
 
     <!-- Support Page -->
     <string name="rom_support_url" translatable="false">https://t.me/ChaldeaFuckFest</string>
@@ -31,6 +33,7 @@
     <string name="thermal_streaming">Streaming</string>
 
     <!-- Dirac settings -->
+    <string name="dirac_enable">Enable dirac</string>
     <string name="dirac_title">Dirac sound enhancer</string>
     <string name="dirac_summary">Optimize sound quality</string>
     <string name="dirac_headset_title">Headset type</string>
