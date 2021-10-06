@@ -26,6 +26,7 @@
 
     <!-- Ambient settings -->
     <string name="ambient_enable">Use ambient display</string>
+    <string name="ambient_display_ia_summary">Raise to wake, pocket gesture, etc</string>
 
     <!-- Thermal Profiles -->
     <string name="thermal_title">Thermal Profiles</string>
