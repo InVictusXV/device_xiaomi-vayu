@@ -50,6 +50,7 @@ persist.backup.ntpServer="0.pool.ntp.org"
 ro.netflix.bsp_rev=Q855-16947-1
 
 # Radio
+persist.sys.fflag.override.settings_provider_model=false
 ro.telephony.default_network=33,22
 
 # Seamless transfer
