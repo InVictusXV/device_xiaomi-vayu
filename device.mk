@@ -244,10 +244,6 @@ PRODUCT_PACKAGES += \
     android.hidl.base@1.0.vendor \
     libhwbinder.vendor
 
-# HotwordEnrollement
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
-
 # Init scripts
 PRODUCT_PACKAGES += \
     init.mi.usb.sh \
