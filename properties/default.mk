@@ -27,15 +27,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.use_color_management=true \
     ro.surface_flinger.use_content_detection_for_refresh_rate=true
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    debug.sf.early_app_phase_offset_ns=500000 \
-    debug.sf.early_gl_app_phase_offset_ns=15000000 \
-    debug.sf.early_gl_phase_offset_ns=3000000 \
-    debug.sf.early_phase_offset_ns=500000 \
-    debug.sf.high_fps_early_gl_phase_offset_ns=6500000 \
-    debug.sf.high_fps_early_phase_offset_ns=6100000 \
-    debug.sf.high_fps_late_app_phase_offset_ns=1000000
-
 ifneq ($(TARGET_BUILD_VARIANT),eng)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     pm.dexopt.boot=verify \
