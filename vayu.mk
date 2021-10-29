@@ -15,7 +15,7 @@
 #
 
 # Inherit AOSP product configuration
-$(call inherit-product, device/xiaomi/vayu/aosp_vayu.mk)
+$(call inherit-product, device/xiaomi/vayu/weeb_vayu.mk)
 
 # Remove AOSP prefix from product name
 PRODUCT_NAME := vayu
