@@ -15,6 +15,9 @@ $(call inherit-product, device/xiaomi/vayu/device.mk)
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 TARGET_BOOT_ANIMATION_RES := 1080
 
+# GApps Build
+WITH_GMS := true
+
 PRODUCT_NAME := aosp_vayu
 PRODUCT_DEVICE := vayu
 PRODUCT_BRAND := POCO
