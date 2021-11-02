@@ -23,6 +23,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
 
 TARGET_BOOT_ANIMATION_RES := 1080
 
+# GApps Build
+WITH_GMS := true
+
 PRODUCT_NAME := aosp_vayu
 PRODUCT_DEVICE := vayu
 PRODUCT_BRAND := POCO
