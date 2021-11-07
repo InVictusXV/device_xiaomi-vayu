@@ -31,3 +31,5 @@ type thermal_link_device, dev_type;
 type ultrasound_device, dev_type;
 
 type vendor_sysfs_iio, fs_type, sysfs_type;
+
+type proc_sched_energy_aware, proc_type, fs_type;
