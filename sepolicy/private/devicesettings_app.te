@@ -2,6 +2,7 @@ type devicesettings_app, domain;
 typeattribute devicesettings_app mlstrustedsubject;
 
 app_domain(devicesettings_app)
+typeattribute devicesettings_app mlstrustedsubject;
 
 # Allow devicesettings_app to find *_service
 allow devicesettings_app {
