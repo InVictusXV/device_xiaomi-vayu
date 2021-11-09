@@ -12,6 +12,7 @@ product                                                 /product               e
 vendor                                                  /vendor                ext4    ro,barrier=1,discard                                 wait,avb,logical,first_stage_mount
 odm                                                     /odm                   ext4    ro,barrier=1,discard                                 wait,avb,logical,first_stage_mount
 /dev/block/by-name/metadata                             /metadata              ext4    noatime,nosuid,nodev,discard                         wait,check,formattable,first_stage_mount
+/dev/block/bootdevice/by-name/system                    /                      ext4    ro,barrier=1,discard,i_version                       wait
 /dev/block/bootdevice/by-name/boot                      /boot                  emmc    defaults                                             recoveryonly
 /dev/block/bootdevice/by-name/modem                     /vendor/firmware_mnt   vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0 wait
 /dev/block/bootdevice/by-name/dsp                       /vendor/dsp            ext4    ro,nosuid,nodev,barrier=1                            wait
