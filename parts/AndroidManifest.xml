@@ -33,7 +33,7 @@
         android:targetSdkVersion="31" />
 
     <application
-        android:label="@string/device_settings_app_name"
+        android:label="@string/deviceparts_label"
         android:persistent="true">
 
         <receiver
