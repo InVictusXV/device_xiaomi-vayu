@@ -15,6 +15,9 @@
      limitations under the License.
 -->
 <resources>
+    <!-- App Name -->
+    <string name="deviceparts_label" translatable="false">Device Parts</string>
+
     <!-- Thermal Profiles -->
     <string name="thermal_title">Thermal Profiles</string>
     <string name="thermal_summary">Adjust per-app thermal profiles for optimum performance</string>
