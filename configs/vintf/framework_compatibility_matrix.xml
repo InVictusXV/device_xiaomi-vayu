@@ -864,6 +864,11 @@
         <version>1.0-1</version>
         <interface>
             <name>IMlipayService</name>
+    <hal format="hidl" optional="true">
+        <name>vendor.xiaomi.hardware.touchfeature</name>
+        <version>1.0</version>
+        <interface>
+            <name>ITouchFeature</name>
             <instance>default</instance>
         </interface>
     </hal>
