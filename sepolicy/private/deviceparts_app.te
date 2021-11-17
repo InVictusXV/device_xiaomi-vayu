@@ -12,12 +12,15 @@ allow deviceparts_app {
   mediaserver_service
 }:service_manager find;
 
+hal_client_domain(deviceparts_app, hal_touchfeature)
+
 # Allow deviceparts_app read and write /data/data subdirectory
 allow deviceparts_app system_app_data_file:dir create_dir_perms;
 allow deviceparts_app system_app_data_file:{ file lnk_file } create_file_perms;
 
 # Allow binder communication with gpuservice
 binder_call(deviceparts_app, gpuservice)
+binder_call(deviceparts_app, hal_touchfeature)
 
 # Allow deviceparts_app to read and write to cgroup/sysfs_leds/sysfs_thermal
 allow deviceparts_app sysfs_leds:dir search;
