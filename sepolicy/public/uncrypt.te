@@ -1,2 +1,2 @@
-# OTA with encrypted f2fs
+# OTA with Encrypted F2FS
 allow uncrypt self:capability sys_admin;
