@@ -15,6 +15,10 @@ persist.device_config.runtime_native_boot.iorap_readahead_enable=true
 ro.config.low_ram=false
 ro.lmk.log_stats=true
 
+# VulkanAPI
+graphics.gpu.profiler.support=true
+graphics.gpu.profiler.vulkan_layer_apk=com.google.pixel.coral.gpuprofiling.vulkanlayer
+
 # Zram
 ro.zram.mark_idle_delay_mins=60
 ro.zram.first_wb_delay_mins=1440
