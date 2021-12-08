@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.RemoteException;
-import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.view.Display;
 import android.view.Surface;
@@ -60,7 +59,6 @@ public final class ThermalUtils {
     private static final String THERMAL_STREAMING = "thermal.streaming=";
 
     private static final String THERMAL_SCONFIG = "/sys/class/thermal/thermal_message/sconfig";
-    private static final String PROP_GAME_MODE = "sys.performance.level";
 
     private boolean mTouchModeChanged;
 
@@ -173,7 +171,6 @@ public final class ThermalUtils {
         String value = getValue();
         String modes[];
         String state = THERMAL_STATE_DEFAULT;
-        boolean isInGameMode = SystemProperties.getInt(PROP_GAME_MODE, -1) > 0;
 
         if (value != null) {
             modes = value.split(":");
@@ -192,9 +189,7 @@ public final class ThermalUtils {
                 state = THERMAL_STATE_STREAMING;
             }
         }
-        if (!isInGameMode) {
-            FileUtils.writeLine(THERMAL_SCONFIG, state);
-        }
+        FileUtils.writeLine(THERMAL_SCONFIG, state);
 
         if (state == THERMAL_STATE_BENCHMARK || state == THERMAL_STATE_GAMING) {
             updateTouchModes(packageName);
