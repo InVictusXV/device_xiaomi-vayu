@@ -35,3 +35,6 @@ ro.product.device=redfin
 ro.product.manufacturer=Google
 ro.product.model=Pixel 5
 ro.product.name=redfin
+
+# Theme
+ro.boot.theme=1
