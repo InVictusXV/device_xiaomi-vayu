@@ -100,10 +100,10 @@ BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_PREBUILT_DTBOIMAGE := device/xiaomi/vayu-kernel/dtbo.img
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/xiaomi/vayu
-TARGET_KERNEL_CONFIG := vayu_defconfig
-TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
-TARGET_KERNEL_VERSION := 4.14
+TARGET_PREBUILT_KERNEL := device/xiaomi/vayu-kernel/Image
+TARGET_PREBUILT_DTB := device/xiaomi/vayu-kernel/dtb.img
+PRODUCT_COPY_FILES += \
+    device/xiaomi/vayu-kernel/dtb.img:$(TARGET_COPY_OUT)/dtb.img
 
 # Partitions
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
