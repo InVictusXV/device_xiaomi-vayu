@@ -382,6 +382,7 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service.xiaomi-libperfmgr \
+    android.hardware.power.stats@1.0-service.xiaomi \
     libqti-perfd-client
 
 # Public libraries
