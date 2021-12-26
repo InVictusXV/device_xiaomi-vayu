@@ -24,7 +24,6 @@
 #include <pixelpowerstats/AidlStateResidencyDataProvider.h>
 #include <pixelpowerstats/GenericStateResidencyDataProvider.h>
 #include <pixelpowerstats/PowerStats.h>
-#include <pixelpowerstats/WlanStateResidencyDataProvider.h>
 
 #include "GpuStateResidencyDataProvider.h"
 #include "RailDataProvider.h"
@@ -50,7 +49,6 @@ using android::hardware::google::pixel::powerstats::GpuStateResidencyDataProvide
 using android::hardware::google::pixel::powerstats::PowerEntityConfig;
 using android::hardware::google::pixel::powerstats::RailDataProvider;
 using android::hardware::google::pixel::powerstats::StateResidencyConfig;
-using android::hardware::google::pixel::powerstats::WlanStateResidencyDataProvider;
 
 int main(int /* argc */, char** /* argv */) {
     ALOGI("power.stats service 1.0 is starting.");
@@ -129,12 +127,6 @@ int main(int /* argc */, char** /* argv */) {
         PowerEntityConfig(generateGenericStateResidencyConfigs(socStateConfig, socStateHeaders)));
 
     service->addStateResidencyDataProvider(socSdp);
-
-    // Add WLAN power entity
-    uint32_t wlanId = service->addPowerEntity("WLAN", PowerEntityType::SUBSYSTEM);
-    sp<WlanStateResidencyDataProvider> wlanSdp =
-            new WlanStateResidencyDataProvider(wlanId, "/sys/kernel/wlan/power_stats");
-    service->addStateResidencyDataProvider(wlanSdp);
 
     // Add GPU power entity
     uint32_t gpuId = service->addPowerEntity("GPU", PowerEntityType::SUBSYSTEM);
