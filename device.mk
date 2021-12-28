@@ -437,6 +437,9 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel \
     hardware/qcom-caf/common/fwk-detect
 
+PRODUCT_PACKAGES_DEBUG += \
+    pwrstats_util
+
 # NeuralNetworks
 PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks@1.3.vendor
