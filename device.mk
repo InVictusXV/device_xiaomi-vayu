@@ -404,6 +404,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint_uclamp.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint_uclamp.json \
     $(LOCAL_PATH)/configs/powerhint_stune.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint_stune.json
 
+PRODUCT_PACKAGES_DEBUG += \
+    pwrstats_util
+
 # Public libraries
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
