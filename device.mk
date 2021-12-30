@@ -429,7 +429,8 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/xiaomi \
     hardware/google/interfaces \
-    hardware/google/pixel
+    hardware/google/pixel \
+    hardware/qcom-caf/common/fwk-detect
 
 # NeuralNetworks
 PRODUCT_PACKAGES += \
