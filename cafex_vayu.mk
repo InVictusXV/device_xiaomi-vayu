@@ -12,13 +12,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/xiaomi/vayu/device.mk)
 
 # Inherit common AOSP configurations
-$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+$(call inherit-product, vendor/cafex/config/common.mk)
 TARGET_BOOT_ANIMATION_RES := 1080
 
-# GApps Build
-WITH_GMS := true
-
-PRODUCT_NAME := aosp_vayu
+PRODUCT_NAME := cafex_vayu
 PRODUCT_DEVICE := vayu
 PRODUCT_BRAND := POCO
 PRODUCT_MODEL := Poco X3 Pro
