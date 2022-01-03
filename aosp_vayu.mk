@@ -23,6 +23,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
 
 TARGET_BOOT_ANIMATION_RES := 1080
 
+# Build version
+CUSTOM_BUILD_VERSION := Exclusive
+
 # GApps Build
 WITH_GMS := true
 
