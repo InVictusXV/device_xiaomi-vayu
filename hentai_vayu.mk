@@ -39,6 +39,7 @@ CUSTOM_BUILD_VERSION := Exclusive
 # GApps Build
 WITH_GMS := true
 
+<<<<<<< HEAD:hentai_vayu.mk
 PRODUCT_NAME := hentai_vayu
 PRODUCT_DEVICE := vayu
 PRODUCT_BRAND := POCO
