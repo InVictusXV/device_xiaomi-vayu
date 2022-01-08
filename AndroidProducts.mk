@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/cafex_vayu.mk
+    $(LOCAL_DIR)/p404_vayu.mk
 
 COMMON_LUNCH_CHOICES := \
-    cafex_vayu-eng \
-    cafex_vayu-userdebug \
-    cafex_vayu-user
+    p404_vayu-eng \
+    p404_vayu-userdebug \
+    p404_vayu-user
