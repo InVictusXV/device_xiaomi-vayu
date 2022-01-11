@@ -621,9 +621,6 @@ service wifi-crda /vendor/bin/init.crda.sh
    disabled
    oneshot
 
-on property:sys.boot_completed=1
-    start qcom-post-boot
-
 on property:ro.vendor.ril.mbn_copy_completed=1
     write /data/vendor/radio/copy_complete 1
 
