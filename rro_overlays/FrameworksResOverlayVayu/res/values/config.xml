@@ -789,4 +789,8 @@
         <item>"com.vanced.android.youtube"</item>
         <item>"com.vanced.android.apps.youtube.music"</item>
     </string-array>
+
+    <!-- List of comma separated package names for which we the system will not show crash, ANR,
+         etc. dialogs. -->
+    <string name="config_appsNotReportingCrashes">com.google.android.tts</string>
 </resources>
