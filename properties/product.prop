@@ -10,7 +10,7 @@ ro.charger.enable_suspend=true
 
 # LMKD
 ro.config.low_ram=false
-ro.lmk.log_stats=true
+ro.lmk.log_stats=false
 
 # Zram
 ro.zram.mark_idle_delay_mins=60
