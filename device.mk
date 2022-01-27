@@ -478,6 +478,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel \
     hardware/qcom-caf/common/fwk-detect \
     hardware/nxp \
+    vendor/qcom/opensource/display
 
 # NeuralNetworks
 PRODUCT_PACKAGES += \
