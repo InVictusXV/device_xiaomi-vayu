@@ -774,4 +774,14 @@
          fading edges is prohibitively expensive on most GPUs. -->
     <bool name="config_ui_enableFadingMarquee">true</bool>
 
+    <!-- The list of packages to automatically opt out of refresh rates higher than 60hz because
+         of known compatibility issues. -->
+    <string-array name="config_highRefreshRateBlacklist">
+        <item>"com.netflix.mediaclient"</item>
+        <item>"com.google.android.youtube"</item>
+        <item>"com.google.android.apps.youtube.music"</item>
+        <item>"com.vanced.android.youtube"</item>
+        <item>"com.vanced.android.apps.youtube.music"</item>
+    </string-array>
+
 </resources>
