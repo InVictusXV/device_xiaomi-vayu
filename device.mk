@@ -444,7 +444,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/xiaomi \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/qcom-caf/common/fwk-detect
+    hardware/qcom-caf/common/fwk-detect \
+    vendor/qcom/opensource/display
 
 # NeuralNetworks
 PRODUCT_PACKAGES += \
