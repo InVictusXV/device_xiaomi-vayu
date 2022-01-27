@@ -779,4 +779,14 @@
          user-set value if toggled by settings so the "Transition animation scale" setting
          should also be hidden if intended to be permanent. -->
     <item name="config_appTransitionAnimationDurationScaleDefault" format="float" type="dimen">0.8</item>
+
+    <!-- The list of packages to automatically opt out of refresh rates higher than 60hz because
+         of known compatibility issues. -->
+    <string-array name="config_highRefreshRateBlacklist">
+        <item>"com.netflix.mediaclient"</item>
+        <item>"com.google.android.youtube"</item>
+        <item>"com.google.android.apps.youtube.music"</item>
+        <item>"com.vanced.android.youtube"</item>
+        <item>"com.vanced.android.apps.youtube.music"</item>
+    </string-array>
 </resources>
