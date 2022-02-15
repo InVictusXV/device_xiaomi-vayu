@@ -4,7 +4,6 @@ persist.vendor.audio.hac.enable=false
 persist.vendor.audio_hal.dsp_bit_width_enforce_mode=24
 
 # Bluetooth
-ro.bluetooth.library_name=libbluetooth_qti.so
 persist.vendor.bt.a2dp.aac_whitelist=false
 persist.vendor.bt.a2dp.mac_whitelist=false
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aptxadaptive-aac-ldac
