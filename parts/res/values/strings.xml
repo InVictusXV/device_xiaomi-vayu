@@ -21,6 +21,9 @@
     <string name="enabled">Enabled</string>
     <string name="disabled">Disabled</string>
 
+    <string name="on">On</string>
+    <string name="off">Off</string>
+
     <!-- Ambient settings -->
     <string name="ambient_enable">Use ambient display</string>
 
