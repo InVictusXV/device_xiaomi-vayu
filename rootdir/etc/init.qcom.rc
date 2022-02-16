@@ -52,10 +52,6 @@ on early-init
     chown root system /dev/kmsg
     chmod 0620 /dev/kmsg
 
-    # FIXME: https://android.googlesource.com/platform/system/core/+/bcefbb1dfb6b02a12d08c77b036bc225a4650368
-    mkdir /dev/sys/fs/by-name 0755 system system
-    symlink /sys/fs/f2fs/sda32 /dev/sys/fs/by-name/userdata
-
 on init
 
     # Create cgroup mount point for memory
