@@ -1,2 +1,6 @@
 # Allow deviceparts_app to lookup vendor_sysfs_graphics
 allow deviceparts_app vendor_sysfs_graphics:dir search;
+
+# Allow deviceparts_app to access to vendor.sys.thermal.*
+get_prop(deviceparts_app, vendor_thermal_normal_prop)
+set_prop(deviceparts_app, vendor_thermal_normal_prop)
