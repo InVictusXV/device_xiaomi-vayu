@@ -96,7 +96,7 @@ vendor.gatekeeper.disable_spu=true
 
 # Graphics
 debug.egl.hw=0
-debug.hwui.renderer=skiavk
+debug.hwui.renderer=skiagl
 debug.mdpcomp.logs=0
 vendor.gralloc.disable_ubwc=0
 vendor.display.disable_excl_rect_partial_fb=1
