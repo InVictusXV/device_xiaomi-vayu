@@ -20,14 +20,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 
 import androidx.preference.PreferenceManager;
-
-import org.lineageos.settings.utils.FileUtils;
 
 import java.util.NoSuchElementException;
 
@@ -42,6 +41,9 @@ public final class ThermalUtils {
     protected static final int STATE_DIALER = 4;
     protected static final int STATE_GAMING = 5;
     protected static final int STATE_STREAMING = 6;
+
+    private static final String THERMAL_PROP = "vendor.sys.thermal.active";
+
     private static final String THERMAL_CONTROL = "thermal_control";
     private static final String THERMAL_STATE_DEFAULT = "0";
     private static final String THERMAL_STATE_BENCHMARK = "10";
@@ -57,8 +59,6 @@ public final class ThermalUtils {
     private static final String THERMAL_DIALER = "thermal.dialer=";
     private static final String THERMAL_GAMING = "thermal.gaming=";
     private static final String THERMAL_STREAMING = "thermal.streaming=";
-
-    private static final String THERMAL_SCONFIG = "/sys/class/thermal/thermal_message/sconfig";
 
     private boolean mTouchModeChanged;
 
@@ -83,10 +83,8 @@ public final class ThermalUtils {
     }
 
     public static void startService(Context context) {
-        if (FileUtils.fileExists(THERMAL_SCONFIG)) {
-            context.startServiceAsUser(new Intent(context, ThermalService.class),
-                    UserHandle.CURRENT);
-        }
+        context.startServiceAsUser(new Intent(context, ThermalService.class),
+                UserHandle.CURRENT);
     }
 
     private void writeValue(String profiles) {
@@ -164,7 +162,7 @@ public final class ThermalUtils {
     }
 
     protected void setDefaultThermalProfile() {
-        FileUtils.writeLine(THERMAL_SCONFIG, THERMAL_STATE_DEFAULT);
+        SystemProperties.set(THERMAL_PROP, THERMAL_STATE_DEFAULT);
     }
 
     protected void setThermalProfile(String packageName) {
@@ -189,7 +187,7 @@ public final class ThermalUtils {
                 state = THERMAL_STATE_STREAMING;
             }
         }
-        FileUtils.writeLine(THERMAL_SCONFIG, state);
+        SystemProperties.set(THERMAL_PROP, state);
 
         if (state == THERMAL_STATE_BENCHMARK || state == THERMAL_STATE_GAMING) {
             updateTouchModes(packageName);
@@ -222,7 +220,7 @@ public final class ThermalUtils {
                 break;
         }
 
-        FileUtils.writeLine(THERMAL_SCONFIG, state);
+        SystemProperties.set(THERMAL_PROP, state);
     }
 
     private void updateTouchModes(String packageName) {
