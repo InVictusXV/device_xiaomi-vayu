@@ -179,6 +179,7 @@
             </intent-filter>
         </service>
 
+        <!-- Disabled: Using system-included Refresh Rate QS Tile instead
         <service
             android:name=".RefreshRateTileService"
             android:icon="@drawable/ic_qs_refresh_rate"
@@ -188,6 +189,7 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
         </service>
+        -->
 
         <service
             android:name=".dirac.DiracTileService"
