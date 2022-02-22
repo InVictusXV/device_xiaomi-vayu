@@ -18,6 +18,7 @@
 package org.lineageos.settings.sensors;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -27,84 +28,115 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.util.Log;
 
+import org.lineageos.settings.R;
 import org.lineageos.settings.doze.DozeUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class PickupSensor implements SensorEventListener {
+public class PickupSensor {
 
     private static final boolean DEBUG = false;
     private static final String TAG = "PickupSensor";
 
     private static final int MIN_PULSE_INTERVAL_MS = 2500;
-    private static final int MIN_WAKEUP_INTERVAL_MS = 1000;
     private static final int WAKELOCK_TIMEOUT_MS = 300;
+    private static final float GYROSCOPE_X_AXIS_THRESHOLD = 1.5f;
 
-    private SensorManager mSensorManager;
-    private Sensor mSensor;
-    private Context mContext;
-    private ExecutorService mExecutorService;
-    private PowerManager mPowerManager;
-    private WakeLock mWakeLock;
+    private final SensorManager mSensorManager;
+    private final Sensor mGyroscopeSensor;
+    private final Sensor mPickupSensor;
+    private final Context mContext;
+    private final ExecutorService mExecutorService;
+    private final PowerManager mPowerManager;
+    private final WakeLock mWakeLock;
 
     private long mEntryTimestamp;
+    private boolean mUseGyroscope = false;
 
     public PickupSensor(Context context) {
         mContext = context;
         mSensorManager = mContext.getSystemService(SensorManager.class);
-        mSensor = SensorsUtils.getSensor(mSensorManager, "xiaomi.sensor.pickup");
+        mPickupSensor = SensorsUtils.getSensor(mSensorManager, "xiaomi.sensor.pickup");
+        mGyroscopeSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE_UNCALIBRATED, false);
         mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, TAG);
         mExecutorService = Executors.newSingleThreadExecutor();
+
+        try {
+            mUseGyroscope = context.getResources().getBoolean(R.bool.config_dozePickupWithGyroscope);
+        } catch (Resources.NotFoundException ignored) {
+        }
     }
 
-    private Future<?> submit(Runnable runnable) {
-        return mExecutorService.submit(runnable);
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
+    public void runSensorAction(SensorEvent event) {
         boolean isRaiseToWake = DozeUtils.isRaiseToWakeEnabled(mContext);
         if (DEBUG) Log.d(TAG, "Got sensor event: " + event.values[0]);
 
         long delta = SystemClock.elapsedRealtime() - mEntryTimestamp;
-        if (delta < (isRaiseToWake ? MIN_WAKEUP_INTERVAL_MS : MIN_PULSE_INTERVAL_MS)) {
+        long earlyTimeout = isRaiseToWake ? 0 : MIN_PULSE_INTERVAL_MS;
+        if (delta < earlyTimeout)
             return;
-        }
 
         mEntryTimestamp = SystemClock.elapsedRealtime();
-
-        if (event.values[0] == 1) {
-            if (isRaiseToWake) {
-                mWakeLock.acquire(WAKELOCK_TIMEOUT_MS);
-                mPowerManager.wakeUp(SystemClock.uptimeMillis(),
-                    PowerManager.WAKE_REASON_GESTURE, TAG);
-            } else {
-                DozeUtils.launchDozePulse(mContext);
-            }
+        if (isRaiseToWake) {
+            mWakeLock.acquire(WAKELOCK_TIMEOUT_MS);
+            mPowerManager.wakeUp(SystemClock.uptimeMillis(),
+                PowerManager.WAKE_REASON_GESTURE, TAG);
+        } else {
+            DozeUtils.launchDozePulse(mContext);
         }
     }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        /* Empty */
-    }
+    private final SensorEventListener mPickupListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (event.values[0] == 1) {
+                runSensorAction(event);
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
+
+    private final SensorEventListener mGyroscopeListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (event.values[0] > GYROSCOPE_X_AXIS_THRESHOLD) {
+                runSensorAction(event);
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
 
     public void enable() {
         if (DEBUG) Log.d(TAG, "Enabling");
-        submit(() -> {
-            mSensorManager.registerListener(this, mSensor,
-                    SensorManager.SENSOR_DELAY_NORMAL);
+        mExecutorService.submit(() -> {
+            if (mUseGyroscope) {
+                mSensorManager.registerListener(mGyroscopeListener, mGyroscopeSensor,
+                        SensorManager.SENSOR_DELAY_NORMAL);
+            } else {
+                mSensorManager.registerListener(mPickupListener, mPickupSensor,
+                        SensorManager.SENSOR_DELAY_NORMAL);
+            }
             mEntryTimestamp = SystemClock.elapsedRealtime();
         });
     }
 
     public void disable() {
         if (DEBUG) Log.d(TAG, "Disabling");
-        submit(() -> {
-            mSensorManager.unregisterListener(this, mSensor);
+        mExecutorService.submit(() -> {
+            if (mUseGyroscope) {
+                mSensorManager.unregisterListener(mGyroscopeListener, mGyroscopeSensor);
+            } else {
+                mSensorManager.unregisterListener(mPickupListener, mPickupSensor);
+            }
         });
     }
 }
