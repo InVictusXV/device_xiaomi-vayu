@@ -32,6 +32,7 @@ import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
+import androidx.preference.ListPreference;
 
 import com.android.settingslib.widget.MainSwitchPreference;
 import com.android.settingslib.widget.OnMainSwitchChangeListener;
@@ -45,8 +46,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
 
     private SwitchPreference mAlwaysOnDisplayPreference;
 
-    private SwitchPreference mPickUpPreference;
-    private SwitchPreference mRaiseToWakePreference;
+    private ListPreference mPickUpModePreference;
     private SwitchPreference mHandwavePreference;
     private SwitchPreference mPocketPreference;
 
@@ -78,16 +78,10 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         PreferenceCategory proximitySensorCategory = (PreferenceCategory) getPreferenceScreen().
                 findPreference(DozeUtils.CATEG_PROX_SENSOR);
 
-        boolean isPickUpEnabled = DozeUtils.isPickUpEnabled(getActivity());
-        boolean isRaiseToWakeEnabled = DozeUtils.isRaiseToWakeEnabled(getActivity());
-
-        mPickUpPreference = (SwitchPreference) findPreference(DozeUtils.GESTURE_PICK_UP_KEY);
-        mPickUpPreference.setEnabled(dozeEnabled && !isRaiseToWakeEnabled);
-        mPickUpPreference.setOnPreferenceChangeListener(this);
-
-        mRaiseToWakePreference = (SwitchPreference) findPreference(DozeUtils.GESTURE_RAISE_TO_WAKE_KEY);
-        mRaiseToWakePreference.setEnabled(dozeEnabled && !isPickUpEnabled);
-        mRaiseToWakePreference.setOnPreferenceChangeListener(this);
+        mPickUpModePreference = (ListPreference) findPreference(DozeUtils.GESTURE_PICK_UP_MODE_KEY);
+        mPickUpModePreference.setEnabled(dozeEnabled);
+        mPickUpModePreference.setOnPreferenceChangeListener(this);
+        mPickUpModePreference.setSummary(mPickUpModePreference.getEntry());
 
         mHandwavePreference = (SwitchPreference) findPreference(DozeUtils.GESTURE_HAND_WAVE_KEY);
         mHandwavePreference.setEnabled(dozeEnabled);
@@ -108,8 +102,6 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         } else {
             pickupSensorCategory.setDependency(DozeUtils.ALWAYS_ON_DISPLAY);
             proximitySensorCategory.setDependency(DozeUtils.ALWAYS_ON_DISPLAY);
-            mPickUpPreference.setDependency(DozeUtils.GESTURE_RAISE_TO_WAKE_KEY);
-            mPocketPreference.setDependency(DozeUtils.GESTURE_RAISE_TO_WAKE_KEY);
         }
     }
 
@@ -119,12 +111,9 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
             case DozeUtils.ALWAYS_ON_DISPLAY:
                 DozeUtils.enableAlwaysOn(getActivity(), (Boolean) newValue);
                 break;
-            case DozeUtils.GESTURE_RAISE_TO_WAKE_KEY:
-                mPickUpPreference.setEnabled(!(Boolean) newValue);
-                break;
-            case DozeUtils.GESTURE_PICK_UP_KEY:
-                mRaiseToWakePreference.setEnabled(!(Boolean) newValue);
-                break;
+            case DozeUtils.GESTURE_PICK_UP_MODE_KEY:
+                mPickUpModePreference.setValue((String) newValue);
+                mPickUpModePreference.setSummary(mPickUpModePreference.getEntry());
             default:
                 break;
         }
@@ -147,10 +136,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         }
         mAlwaysOnDisplayPreference.setEnabled(isChecked);
 
-        boolean isPickUpEnabled = DozeUtils.isPickUpEnabled(getActivity());
-        boolean isRaiseToWakeEnabled = DozeUtils.isRaiseToWakeEnabled(getActivity());
-        mPickUpPreference.setEnabled(isChecked && !isRaiseToWakeEnabled);
-        mRaiseToWakePreference.setEnabled(isChecked && !isPickUpEnabled);
+        mPickUpModePreference.setEnabled(isChecked);
         mHandwavePreference.setEnabled(isChecked);
         mPocketPreference.setEnabled(isChecked);
     }

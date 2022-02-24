@@ -71,7 +71,7 @@ public class PickupSensor {
     }
 
     public void runSensorAction(SensorEvent event) {
-        boolean isRaiseToWake = DozeUtils.isRaiseToWakeEnabled(mContext);
+        boolean isRaiseToWake = DozeUtils.getPickUpMode(mContext) == DozeUtils.PICK_UP_MODE_WAKE;
         if (DEBUG) Log.d(TAG, "Got sensor event: " + event.values[0]);
 
         long delta = SystemClock.elapsedRealtime() - mEntryTimestamp;
