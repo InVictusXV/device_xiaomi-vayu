@@ -112,4 +112,16 @@
         <item>"2"</item>
     </string-array>
 
+    <string-array name="pick_up_modes" translatable="false">
+        <item>"Off"</item>
+        <item>"Pulse notification"</item>
+        <item>"Raise to wake"</item>
+    </string-array>
+
+    <string-array name="pick_up_values" translatable="false">
+        <item>"0"</item>
+        <item>"1"</item>
+        <item>"2"</item>
+    </string-array>
+
 </resources>
