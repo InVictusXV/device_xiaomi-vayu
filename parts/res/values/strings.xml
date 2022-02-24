@@ -28,6 +28,8 @@
     <string name="ambient_enable">Use ambient display</string>
     <string name="ambient_display_ia_summary">Raise to wake, pocket gesture, etc</string>
     <string name="pick_up_title">Pickup mode</string>
+    <string name="pick_up_gyro_title">Use gyroscope for pickup mode</string>
+    <string name="pick_up_gyro_summary">Better accuracy, increases power usage</string>
 
     <!-- Support Page -->
     <string name="rom_support_url" translatable="false">https://t.me/ChaldeaFuckFest</string>
