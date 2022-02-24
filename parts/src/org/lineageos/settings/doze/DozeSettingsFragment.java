@@ -49,6 +49,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
     private ListPreference mPickUpModePreference;
     private SwitchPreference mHandwavePreference;
     private SwitchPreference mPocketPreference;
+    private SwitchPreference mPickUpGyroPreference;
 
     private Handler mHandler = new Handler();
 
@@ -82,6 +83,10 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         mPickUpModePreference.setEnabled(dozeEnabled);
         mPickUpModePreference.setOnPreferenceChangeListener(this);
         mPickUpModePreference.setSummary(mPickUpModePreference.getEntry());
+
+        mPickUpGyroPreference = (SwitchPreference) findPreference(DozeUtils.GESTURE_PICK_UP_GYRO_KEY);
+        mPickUpGyroPreference.setEnabled(dozeEnabled);
+        mPickUpGyroPreference.setOnPreferenceChangeListener(this);
 
         mHandwavePreference = (SwitchPreference) findPreference(DozeUtils.GESTURE_HAND_WAVE_KEY);
         mHandwavePreference.setEnabled(dozeEnabled);
@@ -137,6 +142,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         mAlwaysOnDisplayPreference.setEnabled(isChecked);
 
         mPickUpModePreference.setEnabled(isChecked);
+        mPickUpGyroPreference.setEnabled(isChecked);
         mHandwavePreference.setEnabled(isChecked);
         mPocketPreference.setEnabled(isChecked);
     }

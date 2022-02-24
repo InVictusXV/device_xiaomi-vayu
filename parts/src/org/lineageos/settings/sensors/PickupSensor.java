@@ -65,7 +65,7 @@ public class PickupSensor {
         mExecutorService = Executors.newSingleThreadExecutor();
 
         try {
-            mUseGyroscope = context.getResources().getBoolean(R.bool.config_dozePickupWithGyroscope);
+            mUseGyroscope = DozeUtils.isPickUpGestureWithGyroscope(context);
         } catch (Resources.NotFoundException ignored) {
         }
     }
