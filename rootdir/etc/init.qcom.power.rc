@@ -111,3 +111,7 @@ on init
     # report max frequency to unity tasks.
     write /proc/sys/kernel/sched_lib_name "com.miHoYo.,UnityMain,libunity.so,libfb.so"
     write /proc/sys/kernel/sched_lib_mask_force 255
+
+on fs
+    # Thermal config default
+    setprop vendor.thermal.config thermal_info_config_normal.json
