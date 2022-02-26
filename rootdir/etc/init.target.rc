@@ -104,9 +104,6 @@ on post-fs-data
     mkdir /data/vendor/misc/display 0771 system system
     mkdir /data/vendor/nfc 0770 nfc nfc
 
-    mkdir /data/vendor/thermal 0771 root system
-    mkdir /data/vendor/thermal/config 0771 root system
-
     chown system system /dev/tfa_reg
     chown system system /dev/tfa_rw
     chown system system /dev/tfa_rpc
@@ -140,7 +137,6 @@ on boot
     write /dev/cpuset/background/cpus 0-7
     write /dev/cpuset/system-background/cpus 0-7
 
-    chown system system /sys/class/thermal/thermal_message/sconfig
     chown system system /sys/class/touch/touch_dev/palm_sensor
 
     chown system system /sys/class/backlight/panel0-backlight/brightness_clone
@@ -208,15 +204,6 @@ service vendor.sec_nvm /vendor/bin/sec_nvm
     class core
     user system
     group system
-
-service vendor.thermal-engine /vendor/bin/thermal-engine
-   class main
-   user root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
-   socket thermal-send-rule stream 0660 system system
-   group root
 
 service vendor.energy-awareness /vendor/bin/energy-awareness
     class main
