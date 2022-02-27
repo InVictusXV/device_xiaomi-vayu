@@ -13,6 +13,7 @@ $(call inherit-product, device/xiaomi/vayu/device.mk)
 
 # Inherit common AOSP configurations
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+TARGET_BOOT_ANIMATION_RES := 1080
 
 PRODUCT_NAME := aosp_vayu
 PRODUCT_DEVICE := vayu
