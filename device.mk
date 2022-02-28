@@ -499,7 +499,8 @@ PRODUCT_PACKAGES += \
     thermal_symlinks
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal/thermal_info_config_normal.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_normal.json
+    $(LOCAL_PATH)/configs/thermal/thermal_info_config_normal.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_normal.json \
+    $(LOCAL_PATH)/configs/thermal/thermal_info_config_game.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_game.json
 
 # Touchfeature
 PRODUCT_PACKAGES += \
