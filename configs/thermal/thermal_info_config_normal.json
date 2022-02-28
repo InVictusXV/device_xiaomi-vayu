@@ -192,17 +192,17 @@
             ],
             "HotThreshold":[
                 "NAN",
-                43.0,
-                48.0,
-                50.0,
+                "NAN",
+                "NAN",
+                51.0,
                 "NAN",
                 60.0,
                 "NAN"
             ],
             "HotHysteresis":[
                 0.0,
-                1.9,
-                1.9,
+                0.0,
+                0.0,
                 1.9,
                 1.9,
                 1.9,
@@ -210,11 +210,14 @@
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001,
+            "SendPowerHint":true,
             "Monitor":true,
+            "PollingDelay":300000,
+            "PassiveDelay":7000,
             "BindedCdevInfo": [
                 {
                     "CdevRequest": "thermal-cpufreq-4",
-                    "LimitInfo": [0, 0, 0, 16, 16, 16, 16]
+                    "LimitInfo": [0, 0, 0, 15, 15, 16, 16]
                 },
                 {
                     "CdevRequest": "thermal-cpufreq-7",
@@ -237,11 +240,11 @@
             ],
             "HotThreshold":[
                 "NAN",
-                "39.0",
-                "41.0",
+                "42.0",
                 "43.0",
-                "45.0",
-                "47.0",
+                "46.0",
+                "48.0",
+                "55.0",
                 "NAN"
             ],
             "HotHysteresis":[
@@ -261,7 +264,31 @@
             "BindedCdevInfo": [
                 {
                     "CdevRequest": "battery",
-                    "LimitInfo": [10, 11, 12, 13, 14, 15, 15]
+                    "LimitInfo": [9, 10, 12, 13, 14, 15, 15]
+                }
+            ]
+        },
+        {
+            "Name":"soc",
+            "Type":"BCL_PERCENTAGE",
+            "HotThreshold":[
+                "NAN",
+                "NAN",
+                "NAN",
+                90,
+                93,
+                96,
+                "NAN"
+            ],
+            "VrThreshold":"NAN",
+            "Multiplier":1,
+            "Monitor":true,
+            "PollingDelay":300000,
+            "PassiveDelay":5000,
+            "BindedCdevInfo": [
+                {
+                    "CdevRequest": "battery",
+                    "LimitInfo": [9, 10, 12, 13, 14, 15, 15]
                 }
             ]
         }
