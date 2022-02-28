@@ -42,16 +42,16 @@ public final class ThermalUtils {
     protected static final int STATE_GAMING = 5;
     protected static final int STATE_STREAMING = 6;
 
-    private static final String THERMAL_PROP = "vendor.sys.thermal.active";
+    private static final String THERMAL_PROP = "vendor.thermal.active";
 
     private static final String THERMAL_CONTROL = "thermal_control";
-    private static final String THERMAL_STATE_DEFAULT = "0";
-    private static final String THERMAL_STATE_BENCHMARK = "10";
-    private static final String THERMAL_STATE_BROWSER = "11";
-    private static final String THERMAL_STATE_CAMERA = "12";
-    private static final String THERMAL_STATE_DIALER = "8";
-    private static final String THERMAL_STATE_GAMING = "9";
-    private static final String THERMAL_STATE_STREAMING = "14";
+    private static final String THERMAL_STATE_DEFAULT = "normal";
+    private static final String THERMAL_STATE_BENCHMARK = "normal";
+    private static final String THERMAL_STATE_BROWSER = "normal";
+    private static final String THERMAL_STATE_CAMERA = "normal";
+    private static final String THERMAL_STATE_DIALER = "normal";
+    private static final String THERMAL_STATE_GAMING = "game";
+    private static final String THERMAL_STATE_STREAMING = "normal";
 
     private static final String THERMAL_BENCHMARK = "thermal.benchmark=";
     private static final String THERMAL_BROWSER = "thermal.browser=";
