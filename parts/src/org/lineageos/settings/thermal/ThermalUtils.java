@@ -61,6 +61,7 @@ public final class ThermalUtils {
     private static final String THERMAL_STREAMING = "thermal.streaming=";
 
     private boolean mTouchModeChanged;
+    private String mCurrentState = THERMAL_STATE_DEFAULT;
 
     private Display mDisplay;
     private ITouchFeature mTouchFeature = null;
@@ -161,8 +162,16 @@ public final class ThermalUtils {
         return state;
     }
 
+    private void setThermalState(String state) {
+        if (mCurrentState.equals(state))
+            return;
+
+        SystemProperties.set(THERMAL_PROP, state);
+        mCurrentState = state;
+    }
+
     protected void setDefaultThermalProfile() {
-        SystemProperties.set(THERMAL_PROP, THERMAL_STATE_DEFAULT);
+        setThermalState(THERMAL_STATE_DEFAULT);
     }
 
     protected void setThermalProfile(String packageName) {
@@ -187,7 +196,7 @@ public final class ThermalUtils {
                 state = THERMAL_STATE_STREAMING;
             }
         }
-        SystemProperties.set(THERMAL_PROP, state);
+        setThermalState(state);
 
         if (state == THERMAL_STATE_BENCHMARK || state == THERMAL_STATE_GAMING) {
             updateTouchModes(packageName);
@@ -220,7 +229,7 @@ public final class ThermalUtils {
                 break;
         }
 
-        SystemProperties.set(THERMAL_PROP, state);
+        setThermalState(state);
     }
 
     private void updateTouchModes(String packageName) {
