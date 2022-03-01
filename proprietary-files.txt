@@ -1156,19 +1156,21 @@ vendor/lib64/libscveObjectTracker_stub.so
 # Thermal
 vendor/bin/mi_thermald
 vendor/bin/thermal-engine
-vendor/etc/thermal-arvr.conf
-vendor/etc/thermal-camera.conf
 vendor/etc/thermal-chg-only.conf
 vendor/etc/thermal-engine.conf
-vendor/etc/thermal-map.conf
-vendor/etc/thermal-nolimits.conf
-vendor/etc/thermal-normal.conf
-vendor/etc/thermal-phone.conf
-vendor/etc/thermal-tgame.conf
 vendor/etc/thermald-devices.conf
 vendor/etc/init/init.mi_thermald.rc
 -vendor/lib/libthermalclient.so
 -vendor/lib64/libthermalclient.so
+
+# Thermal config
+vendor/etc/thermal-arvr.conf|bb0e6fe043f74ae98299002b7f9c32b590bafde1
+vendor/etc/thermal-camera.conf|39405e22e8625fda489b8b55c5eda4850ad849e6
+vendor/etc/thermal-evaluation.conf|217ee0c1b3a74900aad46db6c9f718771b4a58c6
+vendor/etc/thermal-game.conf|613f260d266fd64e71a95bcd9cd5cc2e1f9b0b50
+vendor/etc/thermal-map.conf|e873c32901d3f9a2fb44e5f61dc0b70f73494ee4
+vendor/etc/thermal-normal.conf|02697b4afb8ffc47fcad51074f9e25b92ab23e61
+vendor/etc/thermal-phone.conf|b7c62e19f427be208cb0e0af42e3214240e0052a
 
 # Touchfeature
 vendor/bin/hw/vendor.xiaomi.hardware.touchfeature@1.0-service
