@@ -216,7 +216,7 @@
             ],
             "HotThreshold":[
                 "NAN",
-                "NAN",
+                47.0,
                 "NAN",
                 52.0,
                 "NAN",
@@ -247,6 +247,14 @@
                 {
                     "CdevRequest": "thermal-cpufreq-7",
                     "LimitInfo": [0, 0, 0, 14, 14, 20, 20]
+                },
+                {
+                    "CdevRequest": "modem0_pa",
+                    "LimitInfo": [0, 1, 1, 2, 2, 3, 3]
+                },
+                {
+                    "CdevRequest": "modem0_proc",
+                    "LimitInfo": [0, 1, 1, 2, 2, 3, 3]
                 }
             ]
 
@@ -314,6 +322,14 @@
         {
             "Name":"battery",
             "Type":"BATTERY"
+        },
+        {
+            "Name":"modem0_pa",
+            "Type":"MODEM"
+        },
+        {
+            "Name":"modem0_proc",
+            "Type":"MODEM"
         }
     ]
 }

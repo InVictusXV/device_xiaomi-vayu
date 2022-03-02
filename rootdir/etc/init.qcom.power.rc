@@ -128,6 +128,8 @@ on enable-thermal-hal
     chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-6/cur_state
     chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-7/cur_state
     chown system system /dev/thermal/cdev-by-name/thermal-devfreq-0/cur_state
+    chown system system /dev/thermal/cdev-by-name/modem0_pa/cur_state
+    chown system system /dev/thermal/cdev-by-name/modem0_proc/cur_state
     chown system system /dev/thermal/tz-by-name/soc/mode
     chown system system /dev/thermal/tz-by-name/quiet_therm/trip_point_0_hyst
     chown system system /dev/thermal/tz-by-name/quiet_therm/trip_point_0_temp
