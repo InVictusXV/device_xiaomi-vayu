@@ -35,30 +35,14 @@ import vendor.xiaomi.hardware.touchfeature.V1_0.ITouchFeature;
 public final class ThermalUtils {
 
     protected static final int STATE_DEFAULT = 0;
-    protected static final int STATE_BENCHMARK = 1;
-    protected static final int STATE_BROWSER = 2;
-    protected static final int STATE_CAMERA = 3;
-    protected static final int STATE_DIALER = 4;
-    protected static final int STATE_GAMING = 5;
-    protected static final int STATE_STREAMING = 6;
+    protected static final int STATE_GAME = 1;
 
     private static final String THERMAL_PROP = "vendor.thermal.active";
 
-    private static final String THERMAL_CONTROL = "thermal_control";
     private static final String THERMAL_STATE_DEFAULT = "normal";
-    private static final String THERMAL_STATE_BENCHMARK = "normal";
-    private static final String THERMAL_STATE_BROWSER = "normal";
-    private static final String THERMAL_STATE_CAMERA = "normal";
-    private static final String THERMAL_STATE_DIALER = "normal";
-    private static final String THERMAL_STATE_GAMING = "game";
-    private static final String THERMAL_STATE_STREAMING = "normal";
+    private static final String THERMAL_STATE_GAME = "game";
 
-    private static final String THERMAL_BENCHMARK = "thermal.benchmark=";
-    private static final String THERMAL_BROWSER = "thermal.browser=";
-    private static final String THERMAL_CAMERA = "thermal.camera=";
-    private static final String THERMAL_DIALER = "thermal.dialer=";
-    private static final String THERMAL_GAMING = "thermal.gaming=";
-    private static final String THERMAL_STREAMING = "thermal.streaming=";
+    private static final String KEY_THERMAL_GAME_PREF = "thermal_mode_game";
 
     private boolean mTouchModeChanged;
     private String mCurrentState = THERMAL_STATE_DEFAULT;
@@ -88,75 +72,22 @@ public final class ThermalUtils {
                 UserHandle.CURRENT);
     }
 
-    private void writeValue(String profiles) {
-        mSharedPrefs.edit().putString(THERMAL_CONTROL, profiles).apply();
-    }
-
-    private String getValue() {
-        String value = mSharedPrefs.getString(THERMAL_CONTROL, null);
-
-        if (value != null) {
-             String[] modes = value.split(":");
-             if (modes.length < 5) value = null;
-         }
-
-        if (value == null || value.isEmpty()) {
-            value = THERMAL_BENCHMARK + ":" + THERMAL_BROWSER + ":" + THERMAL_CAMERA + ":" +
-                    THERMAL_DIALER + ":" + THERMAL_GAMING + ":" + THERMAL_STREAMING;
-            writeValue(value);
-        }
-        return value;
+    private String getThermalGamePref() {
+        return mSharedPrefs.getString(KEY_THERMAL_GAME_PREF, "");
     }
 
     protected void writePackage(String packageName, int mode) {
-        String value = getValue();
-        value = value.replace(packageName + ",", "");
-        String[] modes = value.split(":");
-        String finalString;
-
-        switch (mode) {
-            case STATE_BENCHMARK:
-                modes[0] = modes[0] + packageName + ",";
-                break;
-            case STATE_BROWSER:
-                modes[1] = modes[1] + packageName + ",";
-                break;
-            case STATE_CAMERA:
-                modes[2] = modes[2] + packageName + ",";
-                break;
-            case STATE_DIALER:
-                modes[3] = modes[3] + packageName + ",";
-                break;
-            case STATE_GAMING:
-                modes[4] = modes[4] + packageName + ",";
-                break;
-            case STATE_STREAMING:
-                modes[5] = modes[5] + packageName + ",";
-                break;
+        String value = getThermalGamePref().replace(packageName + ",", "");
+        if (mode == STATE_GAME) {
+            value = value + packageName + ",";
         }
-
-        finalString = modes[0] + ":" + modes[1] + ":" + modes[2] + ":" + modes[3] + ":" +
-                modes[4] + ":" + modes[5];
-
-        writeValue(finalString);
+        mSharedPrefs.edit().putString(KEY_THERMAL_GAME_PREF, value).apply();
     }
 
     protected int getStateForPackage(String packageName) {
-        String value = getValue();
-        String[] modes = value.split(":");
         int state = STATE_DEFAULT;
-        if (modes[0].contains(packageName + ",")) {
-            state = STATE_BENCHMARK;
-        } else if (modes[1].contains(packageName + ",")) {
-            state = STATE_BROWSER;
-        } else if (modes[2].contains(packageName + ",")) {
-            state = STATE_CAMERA;
-        } else if (modes[3].contains(packageName + ",")) {
-            state = STATE_DIALER;
-        } else if (modes[4].contains(packageName + ",")) {
-            state = STATE_GAMING;
-        } else if (modes[5].contains(packageName + ",")) {
-            state = STATE_STREAMING;
+        if (getThermalGamePref().contains(packageName + ",")) {
+            state = STATE_GAME;
         }
 
         return state;
@@ -175,30 +106,11 @@ public final class ThermalUtils {
     }
 
     protected void setThermalProfile(String packageName) {
-        String value = getValue();
-        String modes[];
-        String state = THERMAL_STATE_DEFAULT;
+        boolean isGame = getThermalGamePref().contains(packageName + ",");
 
-        if (value != null) {
-            modes = value.split(":");
+        setThermalState(isGame ? THERMAL_STATE_GAME : THERMAL_STATE_DEFAULT);
 
-            if (modes[0].contains(packageName + ",")) {
-                state = THERMAL_STATE_BENCHMARK;
-            } else if (modes[1].contains(packageName + ",")) {
-                state = THERMAL_STATE_BROWSER;
-            } else if (modes[2].contains(packageName + ",")) {
-                state = THERMAL_STATE_CAMERA;
-            } else if (modes[3].contains(packageName + ",")) {
-                state = THERMAL_STATE_DIALER;
-            } else if (modes[4].contains(packageName + ",")) {
-                state = THERMAL_STATE_GAMING;
-            } else if (modes[5].contains(packageName + ",")) {
-                state = THERMAL_STATE_STREAMING;
-            }
-        }
-        setThermalState(state);
-
-        if (state == THERMAL_STATE_BENCHMARK || state == THERMAL_STATE_GAMING) {
+        if (isGame) {
             updateTouchModes(packageName);
         } else if (mTouchModeChanged) {
             resetTouchModes();
@@ -206,30 +118,7 @@ public final class ThermalUtils {
     }
 
     protected void setThermalProfileForce(int mode) {
-        String state = THERMAL_STATE_DEFAULT;
-
-        switch (mode) {
-            case STATE_BENCHMARK:
-                state = THERMAL_STATE_BENCHMARK;
-                break;
-            case STATE_BROWSER:
-                state = THERMAL_STATE_BROWSER;
-                break;
-            case STATE_CAMERA:
-                state = THERMAL_STATE_CAMERA;
-                break;
-            case STATE_DIALER:
-                state = THERMAL_STATE_DIALER;
-                break;
-            case STATE_GAMING:
-                state = THERMAL_STATE_GAMING;
-                break;
-            case STATE_STREAMING:
-                state = THERMAL_STATE_STREAMING;
-                break;
-        }
-
-        setThermalState(state);
+        setThermalState(mode == STATE_GAME ? THERMAL_STATE_GAME : THERMAL_STATE_DEFAULT);
     }
 
     private void updateTouchModes(String packageName) {
