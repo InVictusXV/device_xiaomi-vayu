@@ -6,7 +6,12 @@ allow vendor_thermal-engine {
 
 allow vendor_thermal-engine vendor_sysfs_devfreq:file rw_file_perms;
 
+dontaudit vendor_thermal-engine self:capability dac_override;
+dontaudit vendor_thermal-engine kernel:system module_request;
+
 # Rule for vendor_thermal-engine to access init process
 unix_socket_connect(vendor_thermal-engine, property, init);
+
+set_prop(vendor_thermal-engine, vendor_thermal_prop)
 
 set_prop(vendor_thermal-engine, vendor_thermal_normal_prop)
