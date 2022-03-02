@@ -290,6 +290,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/usr/keylayout/,$(TARGET_COPY_OUT_VENDOR)/usr/keylayout)
 
+# Kernel Headers
+PRODUCT_VENDOR_KERNEL_HEADERS := device/xiaomi/vayu-kernel/sm8150/kernel-headers
+
+# Kernel
+LOCAL_KERNEL := device/xiaomi/vayu-kernel/Image
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
 # IMS & Telephony
 PRODUCT_PACKAGES += \
     ims-ext-common \
