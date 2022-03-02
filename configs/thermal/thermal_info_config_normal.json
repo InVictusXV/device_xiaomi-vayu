@@ -177,17 +177,30 @@
             "PassiveDelay":7000
         },
         {
+            "Name":"cam_therm1",
+            "Type":"UNKNOWN",
+            "HotThreshold":[
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN",
+                "NAN"
+            ],
+            "VrThreshold":"NAN",
+            "Multiplier":0.001
+        },
+        {
             "Name":"VIRTUAL-SKIN",
             "Type":"SKIN",
             "VirtualSensor":true,
             "TriggerSensor":"quiet_therm",
             "Formula":"MAXIMUM",
             "Combination":[
-                "quiet_therm",
-                "battery"
+                "cam_therm1"
             ],
             "Coefficient":[
-                "1.0",
                 "1.0"
             ],
             "HotThreshold":[
@@ -241,7 +254,7 @@
             "TriggerSensor":"quiet_therm",
             "Formula":"MAXIMUM",
             "Combination":[
-                "quiet_therm"
+                "cam_therm1"
             ],
             "Coefficient":[
                 "1.0"
