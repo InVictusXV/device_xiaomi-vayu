@@ -1153,6 +1153,9 @@ vendor/lib64/libscveObjectSegmentation_stub.so
 vendor/lib64/libscveObjectTracker.so
 vendor/lib64/libscveObjectTracker_stub.so
 
+# Thermal - from coral 12 SP1A.210812.015-7679548
+vendor/bin/thermal-engine|01cb7dc998c39016b54089c18921ad7d65b3c675
+
 # Thermal - from barbet 12 S2B2.211203.006-8015633
 -vendor/lib64/libthermalclient.so|0a12301d1557583db10f730d1d3cced841448b99
 
