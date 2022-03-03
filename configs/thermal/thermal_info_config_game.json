@@ -291,6 +291,30 @@
                     "LimitInfo": [10, 11, 12, 13, 14, 15, 15]
                 }
             ]
+        },
+        {
+            "Name":"soc",
+            "Type":"BCL_PERCENTAGE",
+            "HotThreshold":[
+                "NAN",
+                "NAN",
+                "NAN",
+                90,
+                93,
+                96,
+                "NAN"
+            ],
+            "VrThreshold":"NAN",
+            "Multiplier":1,
+            "Monitor":true,
+            "PollingDelay":300000,
+            "PassiveDelay":5000,
+            "BindedCdevInfo": [
+                {
+                    "CdevRequest": "battery",
+                    "LimitInfo": [10, 10, 10, 15, 15, 15, 15]
+                }
+            ]
         }
     ],
     "CoolingDevices":[
