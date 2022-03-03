@@ -255,7 +255,6 @@ on property:vendor.thermal.active=*
     setprop vendor.thermal.config thermal_info_config_${vendor.thermal.active:-normal}.json
     restart vendor.thermal-hal-2-0
 
-    write /dev/thermal/cdev-by-name/battery/cur_state 0
     write /dev/thermal/cdev-by-name/modem0_pa/cur_state 0
     write /dev/thermal/cdev-by-name/modem0_proc/cur_state 0
     write /dev/thermal/cdev-by-name/thermal-cpufreq-0/cur_state 0
