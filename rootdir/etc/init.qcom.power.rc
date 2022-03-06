@@ -114,30 +114,14 @@ on init
 
 # Thermal HAL needed
 on enable-thermal-hal
-    # Thermal config default
-    setprop vendor.thermal.config thermal_info_config_normal.json
-
     # Permission
-    chown system system /dev/thermal/cdev-by-name/battery/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-0/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-1/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-2/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-3/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-4/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-5/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-6/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-cpufreq-7/cur_state
-    chown system system /dev/thermal/cdev-by-name/thermal-devfreq-0/cur_state
-    chown system system /dev/thermal/tz-by-name/soc/mode
-    chown system system /dev/thermal/tz-by-name/quiet_therm/trip_point_0_hyst
-    chown system system /dev/thermal/tz-by-name/quiet_therm/trip_point_0_temp
+    chown root system /dev/thermal/cdev-by-name/battery/cur_state
+    chmod 660 /dev/thermal/cdev-by-name/battery/cur_state
 
     # Enable State of Charge (SOC)
     write /dev/thermal/tz-by-name/soc/mode "enabled"
 
 on charger
-    mkdir /dev/thermal 0750 system system
-    mkdir /dev/thermal/tz-by-name 0750 system system
-    mkdir /dev/thermal/cdev-by-name 0750 system system
     start vendor.thermal.symlinks
+    start vendor.thermal-engine
     trigger enable-thermal-hal
