@@ -205,7 +205,7 @@ service vendor.sec_nvm /vendor/bin/sec_nvm
     user system
     group system
 
-service vendor.thermal-engine /vendor/bin/thermal-engine -c /vendor/etc/thermal-engine.conf
+service vendor.thermal-engine /vendor/bin/thermal-engine
    class main
    user root
    group root
