@@ -10,7 +10,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -25,7 +25,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -40,7 +40,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -55,7 +55,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -70,7 +70,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -85,7 +85,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -100,7 +100,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -115,7 +115,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -130,7 +130,7 @@
                 95.0,
                 "NAN",
                 "NAN",
-                115.0
+                125.0
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
@@ -149,124 +149,6 @@
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
-        },
-        {
-            "Name":"quiet_therm",
-            "Type":"UNKNOWN",
-            "HotThreshold":[
-                "NAN",
-                "32.2",
-                "NAN",
-                "NAN",
-                "NAN",
-                "NAN",
-                "NAN"
-            ],
-            "HotHysteresis":[
-                0.0,
-                0.9,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0
-            ],
-            "VrThreshold":"NAN",
-            "Multiplier":0.001,
-            "PollingDelay":60000,
-            "PassiveDelay":7000
-        },
-        {
-            "Name":"VIRTUAL-SKIN",
-            "Type":"SKIN",
-            "VirtualSensor":true,
-            "TriggerSensor":"quiet_therm",
-            "Formula":"MAXIMUM",
-            "Combination":[
-                "quiet_therm",
-                "battery"
-            ],
-            "Coefficient":[
-                "1.0",
-                "1.0"
-            ],
-            "HotThreshold":[
-                "NAN",
-                "NAN",
-                "NAN",
-                51.0,
-                "NAN",
-                60.0,
-                "NAN"
-            ],
-            "HotHysteresis":[
-                0.0,
-                0.0,
-                0.0,
-                1.9,
-                1.9,
-                1.9,
-                1.9
-            ],
-            "VrThreshold":"NAN",
-            "Multiplier":0.001,
-            "SendPowerHint":true,
-            "Monitor":true,
-            "PollingDelay":300000,
-            "PassiveDelay":7000,
-            "BindedCdevInfo": [
-                {
-                    "CdevRequest": "thermal-cpufreq-4",
-                    "LimitInfo": [0, 0, 0, 15, 15, 16, 16]
-                },
-                {
-                    "CdevRequest": "thermal-cpufreq-7",
-                    "LimitInfo": [0, 0, 0, 20, 20, 20, 20]
-                }
-            ]
-
-        },
-        {
-            "Name":"VIRTUAL-SKIN-CHARGE",
-            "Type":"UNKNOWN",
-            "VirtualSensor":true,
-            "TriggerSensor":"quiet_therm",
-            "Formula":"MAXIMUM",
-            "Combination":[
-                "quiet_therm"
-            ],
-            "Coefficient":[
-                "1.0"
-            ],
-            "HotThreshold":[
-                "NAN",
-                "42.0",
-                "43.0",
-                "46.0",
-                "48.0",
-                "55.0",
-                "NAN"
-            ],
-            "HotHysteresis":[
-                0.0,
-                1.9,
-                1.9,
-                1.9,
-                1.9,
-                1.9,
-                1.9
-            ],
-            "VrThreshold":"NAN",
-            "Multiplier":0.001,
-            "Monitor":true,
-            "PollingDelay":300000,
-            "PassiveDelay":7000,
-            "BindedCdevInfo": [
-                {
-                    "CdevRequest": "battery",
-                    "LimitInfo": [9, 10, 12, 13, 14, 15, 15]
-                }
-            ]
         },
         {
             "Name":"soc",
@@ -294,22 +176,6 @@
         }
     ],
     "CoolingDevices":[
-        {
-            "Name":"thermal-cpufreq-0",
-            "Type":"CPU"
-        },
-        {
-            "Name":"thermal-cpufreq-4",
-            "Type":"CPU"
-        },
-        {
-            "Name":"thermal-cpufreq-7",
-            "Type":"CPU"
-        },
-        {
-            "Name":"thermal-devfreq-0",
-            "Type":"GPU"
-        },
         {
             "Name":"battery",
             "Type":"BATTERY"
