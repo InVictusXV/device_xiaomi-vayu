@@ -125,17 +125,6 @@ on boot
     chown system system /sys/class/drm/card0-DSI-1/doze_backlight
     start rmt_storage
     start rfs_access
-    write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/audio-app/cpus 1-2
-    write /dev/cpuset/foreground/cpus 0-3
-    write /dev/cpuset/foreground/boost/cpus 0-3
-    write /dev/cpuset/background/cpus 0-3
-    write /dev/cpuset/system-background/cpus 0-3
-    write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/foreground/boost/cpus 0-7
-    write /dev/cpuset/background/cpus 0-7
-    write /dev/cpuset/system-background/cpus 0-7
 
     chown system system /sys/class/touch/touch_dev/palm_sensor
 
@@ -157,6 +146,9 @@ on boot && property:persist.vendor.usb.controller.default=*
     setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
 
 on property:sys.boot_completed=1
+    # Turn off scheduler boost at the end
+    write /proc/sys/kernel/sched_boost 0
+
     rm /data/unencrypted/zram_swap
     swapon_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/swappiness 100
