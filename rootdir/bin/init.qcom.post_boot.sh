@@ -68,17 +68,20 @@ case "$target" in
     echo 10 > /proc/sys/kernel/sched_group_downmigrate
     echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
 
-    # configure governor settings for silver cluster
-    echo 1209600 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
-    echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
+    # schedutil custom setup (WALT only)
+    if [ -f /proc/sys/kernel/sched_walt_rotate_big_tasks ]; then
+        # configure governor settings for silver cluster
+        echo 1209600 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
+        echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
 
-    # configure governor settings for gold cluster
-    echo 1612800 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
-    echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl
+        # configure governor settings for gold cluster
+        echo 1612800 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
+        echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl
 
-    # configure governor settings for gold+ cluster
-    echo 1612800 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
-    echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
+        # configure governor settings for gold+ cluster
+        echo 1612800 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
+        echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
+    fi
 
     # configure input boost settings
     echo "0:1324800" > /sys/module/cpu_boost/parameters/input_boost_freq
