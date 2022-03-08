@@ -248,11 +248,6 @@ on property:vendor.audio.cit.spkcal.copy=true
     chmod 666 /mnt/vendor/persist/audio/tas25xx_calib.bin
     chmod 666 /mnt/vendor/persist/audio/tas2559_cal.txt
 
-on property:vendor.sys.thermal.active=*
-    chmod 644 /sys/class/thermal/thermal_message/sconfig
-    chown system system /sys/class/thermal/thermal_message/sconfig
-    write /sys/class/thermal/thermal_message/sconfig ${vendor.sys.thermal.active}
-
 service remosaic_daemon /system/vendor/bin/remosaic_daemon
    class late_start
    user camera

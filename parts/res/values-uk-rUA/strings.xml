@@ -12,17 +12,6 @@
      limitations under the License.
 -->
 <resources>
-    <!-- Thermal Profiles -->
-    <string name="thermal_title">Профілі оптимізації</string>
-    <string name="thermal_summary">Встановити профілі оптимізації для оптимальної продуктивності застосунків</string>
-    <string name="thermal_default">За замовчуванням</string>
-    <string name="thermal_benchmark">Бенчмарк</string>
-    <string name="thermal_browser">Браузер</string>
-    <string name="thermal_camera">Камера</string>
-    <string name="thermal_dialer">Дзвінки</string>
-    <string name="thermal_gaming">Ігри</string>
-    <string name="thermal_streaming">Стриминг</string>
-
     <!-- Dirac settings -->
     <string name="dirac_title">Поліпшення звуку Dirac</string>
     <string name="dirac_headset_title">Тип гарнітури</string>
