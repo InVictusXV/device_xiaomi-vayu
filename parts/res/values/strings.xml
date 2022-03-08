@@ -31,6 +31,17 @@
     <string name="pick_up_gyro_title">Use gyroscope for pickup mode</string>
     <string name="pick_up_gyro_summary">Better accuracy, increases power usage</string>
 
+    <!-- Touch control Settings -->
+    <string name="touch_control_title">Touch control</string>
+    <string name="touch_control_summary">Adjust per-app touchscreen features</string>
+    <string name="touch_game_mode_title">Enable</string>
+    <string name="touch_response_title">Responsivity</string>
+    <string name="touch_response_summary">Controls touch response</string>
+    <string name="touch_sensitivity_title">Sensitivity</string>
+    <string name="touch_sensitivity_summary">Controls touch sensitivity for repeated taps</string>
+    <string name="touch_resistant_title">Resistant area</string>
+    <string name="touch_resistant_summary">Reduce touch sensitivity near the edges to avoid triggering touch controls</string>
+
     <!-- Dirac settings -->
     <string name="dirac_enable">Enable dirac</string>
     <string name="dirac_title">Dirac sound enhancer</string>
