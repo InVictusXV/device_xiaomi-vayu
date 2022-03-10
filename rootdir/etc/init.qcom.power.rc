@@ -121,9 +121,6 @@ on enable-thermal-hal
     chown root system /dev/thermal/cdev-by-name/battery/cur_state
     chmod 660 /dev/thermal/cdev-by-name/battery/cur_state
 
-    # Enable State of Charge (SOC)
-    write /dev/thermal/tz-by-name/soc/mode "enabled"
-
 on charger
     start vendor.thermal.symlinks
     start vendor.thermal-engine
