@@ -15,6 +15,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Evolution X Maintainer Name -->
-    <string name="build_maintainer_summary" translatable="false">elizabethangelalorenza</string>
+    <!-- Nusantara Maintainer Name -->
+    <string name="maintainer_name">Aradhea</string>
 </resources>

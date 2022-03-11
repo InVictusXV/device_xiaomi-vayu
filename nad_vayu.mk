@@ -11,13 +11,22 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit device stuff.
 $(call inherit-product, device/xiaomi/vayu/device.mk)
 
-# Inherit common Evolution-X stuff.
-$(call inherit-product, vendor/evolution/config/common_full_phone.mk)
+# Inherit common Nusantara stuff.
+$(call inherit-product, vendor/nusantara/config/common_full_phone.mk)
 
 TARGET_BOOT_ANIMATION_RES := 1080
 
+#GApps
+USE_GAPPS := true
+
+# Pixel Charging
+USE_PIXEL_CHARGING := true
+
+# Pixel Charging
+USE_PIXEL_CHARGING := true
+
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := evolution_vayu
+PRODUCT_NAME := nad_vayu
 PRODUCT_DEVICE := vayu
 PRODUCT_BRAND := POCO
 PRODUCT_MODEL := Poco X3 Pro

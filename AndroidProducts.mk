@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/evolution_vayu.mk
+    $(LOCAL_DIR)/nad_vayu.mk
 
 COMMON_LUNCH_CHOICES := \
-    evolution_vayu-eng \
-    evolution_vayu-userdebug \
-    evolution_vayu-user
+    nad_vayu-eng \
+    nad_vayu-userdebug \
+    nad_vayu-user
