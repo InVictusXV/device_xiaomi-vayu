@@ -31,10 +31,6 @@ target=`getprop ro.board.platform`
 
 case "$target" in
     "msmnile")
-
-    echo 2 > /proc/irq/7/smp_affinity_list # msm_drm
-    echo 1 > /proc/irq/489/smp_affinity_list # kgsl-3d0
-
     # Core control parameters for gold
     echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
     echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
