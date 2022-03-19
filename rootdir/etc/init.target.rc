@@ -39,6 +39,10 @@ on init
     chown system system /sys/class/leds/white/brightness
     chown system system /sys/class/leds/white/breath
 
+    # set default schedTune value for foreground/top-app
+    write /dev/stune/foreground/schedtune.prefer_idle 1
+    write /dev/stune/top-app/schedtune.prefer_idle 1
+
     # set default schedTune value for camera-daemon
     write /dev/stune/camera-daemon/schedtune.prefer_idle 1
 
