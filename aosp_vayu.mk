@@ -21,6 +21,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_product.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
 
+#GApps
+WITH_GMS := true
+
 TARGET_BOOT_ANIMATION_RES := 1080
 
 PRODUCT_NAME := aosp_vayu
