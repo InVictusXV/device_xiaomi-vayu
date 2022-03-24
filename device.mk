@@ -448,7 +448,8 @@ PRODUCT_COPY_FILES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/xiaomi
+    hardware/xiaomi \
+    hardware/nxp
 
 # NeuralNetworks
 PRODUCT_PACKAGES += \
@@ -466,7 +467,8 @@ PRODUCT_PACKAGES += \
     libchrome.vendor \
     NfcNci \
     SecureElement \
-    Tag
+    Tag \
+    nfc_nci_nxp
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
