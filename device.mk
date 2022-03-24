@@ -457,7 +457,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/xiaomi \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/qcom-caf/common/fwk-detect
+    hardware/qcom-caf/common/fwk-detect \
+    hardware/nxp \
 
 # NeuralNetworks
 PRODUCT_PACKAGES += \
@@ -475,7 +476,8 @@ PRODUCT_PACKAGES += \
     libchrome.vendor \
     NfcNci \
     SecureElement \
-    Tag
+    Tag \
+    nfc_nci_nxp
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
