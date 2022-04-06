@@ -400,7 +400,8 @@ PRODUCT_PACKAGES += \
     libqti-perfd-client
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+    $(LOCAL_PATH)/configs/powerhint_uclamp.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint_uclamp.json \
+    $(LOCAL_PATH)/configs/powerhint_stune.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint_stune.json
 
 # Public libraries
 PRODUCT_COPY_FILES += \

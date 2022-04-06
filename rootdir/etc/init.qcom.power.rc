@@ -115,6 +115,9 @@ on init
     write /proc/sys/kernel/sched_lib_name "com.miHoYo.,UnityMain,libunity.so,libfb.so"
     write /proc/sys/kernel/sched_lib_mask_force 255
 
+    # Default powerhint
+    setprop vendor.powerhal.config powerhint_uclamp.json
+
 # Thermal HAL needed
 on enable-thermal-hal
     # Permission
@@ -125,3 +128,7 @@ on charger
     start vendor.thermal.symlinks
     start vendor.thermal-engine
     trigger enable-thermal-hal
+
+on property:vendor.powerhal.type=*
+    setprop vendor.powerhal.config powerhint_${vendor.powerhal.type}.json
+    restart vendor.power-hal-aidl

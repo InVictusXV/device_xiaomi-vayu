@@ -146,6 +146,12 @@ case "$target" in
     # device/target specific folder
     setprop vendor.dcvs.prop 1
 
+    if [ -f /dev/stune/top-app/schedtune.boost ]; then
+        setprop vendor.powerhal.type "stune"
+    else
+        setprop vendor.powerhal.type "uclamp"
+    fi
+
     ;;
 esac
 
