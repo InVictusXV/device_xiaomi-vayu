@@ -142,6 +142,17 @@
       "ResetOnInit": true
     },
     {
+      "Name": "UclampTopMin",
+      "Path": "/dev/cpuset/top-app/uclamp.min",
+      "Values": [
+        "10",
+        "35",
+        "50"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "CPUBWHystTriggerCount",
       "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/bw_hwmon/hyst_trigger_count",
       "Values": [
@@ -339,6 +350,12 @@
     },
     {
       "PowerHint": "INTERACTION",
+      "Node": "UclampTopMin",
+      "Duration": 0,
+      "Value": "35"
+    },
+    {
+      "PowerHint": "INTERACTION",
       "Node": "CPUBWHystTriggerCount",
       "Duration": 0,
       "Value": "0"
@@ -408,6 +425,12 @@
       "Node": "PMQoSCpuDmaLatency",
       "Duration": 5000,
       "Value": "2c"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "UclampTopMin",
+      "Duration": 5000,
+      "Value": "50"
     },
     {
       "PowerHint": "LAUNCH",
