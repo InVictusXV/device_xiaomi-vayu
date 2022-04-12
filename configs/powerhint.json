@@ -142,8 +142,10 @@
       "Path": "/dev/stune/top-app/schedtune.boost",
       "Values": [
         "5",
-        "1"
+        "1",
+        "0"
       ],
+      "DefaultIndex": 1,
       "ResetOnInit": true
     },
     {
@@ -509,6 +511,12 @@
       "Node": "PMQoSCpuDmaLatency",
       "Duration": 1000,
       "Value": "2c"
+    },
+    {
+      "PowerHint": "DISPLAY_INACTIVE",
+      "Node": "TASchedtuneBoost",
+      "Duration": 0,
+      "Value": "0"
     },
     {
       "PowerHint": "CAMERA_STREAMING_MID",
