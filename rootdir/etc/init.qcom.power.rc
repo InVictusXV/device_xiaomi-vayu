@@ -30,20 +30,11 @@ on early-init
     write /proc/sys/kernel/sched_energy_aware 0
 
 on enable-low-power
-    # Enable PowerHAL hint processing
-    setprop vendor.powerhal.init 1
-
     # Enable EAS
     write /proc/sys/kernel/sched_energy_aware 1
 
     # Post-setup services
     start qcom-post-boot
-
-on property:init.svc.recovery=running
-    trigger enable-low-power
-
-on property:sys.boot_completed=1
-    trigger enable-low-power
 
     # Runtime fs tuning
     write /sys/block/sda/queue/nr_requests 128
@@ -77,6 +68,18 @@ on property:sys.boot_completed=1
     # Enable idle state listener
     write /sys/class/drm/card0/device/idle_encoder_mask 1
     write /sys/class/drm/card0/device/idle_timeout_ms 100
+
+    # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
+
+    # Post-setup services parsed
+    setprop vendor.post_boot.parsed 1
+
+on property:init.svc.recovery=running
+    trigger enable-low-power
+
+on property:sys.boot_completed=1
+    trigger enable-low-power
 
 on early-init
     # configure governor settings
