@@ -149,6 +149,37 @@
             ],
             "VrThreshold":"NAN",
             "Multiplier":0.001
+        },
+        {
+            "Name":"cam_therm1",
+            "Type":"SKIN",
+            "HotThreshold":[
+                "NAN",
+                46.0,
+                52.0,
+                57.0,
+                "NAN",
+                "NAN",
+                "NAN"
+            ],
+            "HotHysteresis":[
+                0.0,
+                1.9,
+                5.9,
+                4.9,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "VrThreshold":"NAN",
+            "Multiplier":0.001,
+            "Monitor":true
+        }
+    ],
+    "CoolingDevices":[
+        {
+            "Name":"battery",
+            "Type":"BATTERY"
         }
     ]
 }
